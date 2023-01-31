@@ -45,6 +45,8 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "slim-rails"
+
 group :development, :test do
   gem "rspec-rails", "~> 4.1.0"
   gem "factory_bot_rails"
@@ -66,8 +68,9 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara', '>= 3.26'
+  gem "capybara", ">= 3.26"
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "shoulda-matchers", "~> 5.0"
+  gem "rails-controller-testing"
 end
