@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe DronesController, type: :controller do
+  let(:drone) { create(:drone) }
+
   describe 'GET #index' do
     let(:drones) { create_list(:drone, 3) }
 
@@ -14,4 +16,33 @@ RSpec.describe DronesController, type: :controller do
       expect(response).to render_template :index
     end
   end
+
+  describe 'GET #show' do
+
+  end
+
+  describe 'GET #create' do
+    context 'with valid attributes' do
+    end
+
+    context 'with invalid attributes' do
+    end
+  end
+
+  describe 'GET #edit' do
+
+  end
+
+  describe 'PATCH #update' do
+    context 'with valid attributes' do
+    end
+
+    context 'with invalid attributes' do
+    end
+  end
+
+  describe 'DELETE #destroy' do
+
+  end
+
 end
