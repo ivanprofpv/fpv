@@ -16,6 +16,7 @@ class DronesController < ApplicationController
     @drone = Drone.new(drone_params)
 
     if @drone.save
+      flash[:good]
       redirect_to @drone
     else
       render :new
@@ -27,6 +28,7 @@ class DronesController < ApplicationController
 
   def update
     if @drone.update(drone_params)
+      flash[:good]
       redirect_to @drone
     else
       render :edit
@@ -35,6 +37,7 @@ class DronesController < ApplicationController
 
   def destroy
     @drone.destroy
+    flash[:good]
     redirect_to root_path
   end
 
