@@ -46,6 +46,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "slim-rails"
+gem "devise", "~> 4.8.1"
 
 group :development, :test do
   gem "rspec-rails", "~> 4.1.0"
