@@ -1,0 +1,10 @@
+- if user_signed_in?
+  .drone-errors
+    = render 'shared/errors', resource: @drone
+  .drone_characteristics
+    = form_with model: @drone, local: false do |f|
+      p= f.label :title
+      p= f.text_field :title
+      p= f.label :body
+      p= f.text_area :body
+      p= f.submit 'Build'

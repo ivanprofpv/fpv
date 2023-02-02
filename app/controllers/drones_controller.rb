@@ -15,8 +15,10 @@ class DronesController < ApplicationController
   def create
     @drone = Drone.new(drone_params)
 
+    @drone.user = current_user
+
     if @drone.save
-      flash[:good]
+      flash[:good] = "Drone created successfully."
       redirect_to @drone
     else
       render :new
@@ -28,7 +30,7 @@ class DronesController < ApplicationController
 
   def update
     if @drone.update(drone_params)
-      flash[:good]
+      flash[:good] = "Drone updated successfully."
       redirect_to @drone
     else
       render :edit
@@ -37,7 +39,7 @@ class DronesController < ApplicationController
 
   def destroy
     @drone.destroy
-    flash[:good]
+    flash[:good] = "Drone deleted successfully."
     redirect_to root_path
   end
 
