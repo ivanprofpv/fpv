@@ -1,10 +1,15 @@
 {
   "dependencies": {
-    "@rails/webpacker": "5.4.3",
-    "webpack": "4.46.0",
-    "webpack-cli": "3.3.12"
+    "@rails/webpacker": "^5.0.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
-    "webpack-dev-server": "3"
-  }
+    "webpack-dev-server": "^3"
+  },
+  "name": "fpv",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ivanprofpv/fpv.git",
+  "license": "MIT"
 }
