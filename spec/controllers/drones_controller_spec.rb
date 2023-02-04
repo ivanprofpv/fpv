@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe DronesController, type: :controller do
-  let(:drone) { create(:drone) }
+  let(:user) { create(:user) }
+  let(:drone) { create(:drone, user: user) }
 
   describe 'GET #index' do
-    let(:drones) { create_list(:drone, 3) }
+
+    let(:drones) { create_list(:drone, 3, user: user) }
 
     before { get :index }
 
@@ -45,24 +47,29 @@ RSpec.describe DronesController, type: :controller do
 
   describe 'POST #create' do
 
-    context 'with valid attributes' do
+    context 'Authenticated user'
 
-      it 'saves new drone-card in database' do
-        expect { post :create, params: { drone: attributes_for(:drone) } }.to change(Drone, :count).by(1)
+      before { login(user) }
+
+      context 'with valid attributes' do
+
+        it 'saves new drone-card in database' do
+          expect { post :create, params: { drone: attributes_for(:drone) } }.to change(Drone, :count).by(1)
+        end
+      end
+
+      context 'with invalid attributes' do
+
+        it 'does not saves new drone-card in database' do
+          expect { post :create, params: { drone: attributes_for(:drone, :invalid) } }.to_not change(Drone, :count)
+        end
       end
     end
-
-    context 'with invalid attributes' do
-
-      it 'does not saves new drone-card in database' do
-        expect { post :create, params: { drone: attributes_for(:drone, :invalid) } }.to_not change(Drone, :count)
-      end
-    end
-  end
 
   describe 'GET #edit' do
 
-    before { get :edit, params: { id: drone } }
+    before { login(user) }
+    before { get :edit, params: { id: drone, user: user } }
 
     it 'check if the data is set to a variable @drone' do
       expect(assigns(:drone)).to eq drone
@@ -104,7 +111,7 @@ RSpec.describe DronesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let!(:drone) { create(:drone) }
+    let!(:drone) { create(:drone, user: user) }
 
     it 'delete drone-card' do
       expect { delete :destroy, params: { id: drone } }.to change(Drone, :count).by(-1)
@@ -115,5 +122,4 @@ RSpec.describe DronesController, type: :controller do
       expect(response).to redirect_to root_path
     end
   end
-
 end
