@@ -46,10 +46,10 @@ class DronesController < ApplicationController
   private
 
   def load_drone
-    @drone = Drone.find(params[:id])
+    @drone = Drone.with_attached_fotos.find(params[:id])
   end
 
   def drone_params
-    params.require(:drone).permit(:title, :body)
+    params.require(:drone).permit(:title, :body, fotos: [])
   end
 end
