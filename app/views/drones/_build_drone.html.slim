@@ -7,4 +7,6 @@
       p= f.text_field :title
       p= f.label :body
       p= f.text_area :body
+      p= f.label :fotos
+      p= f.file_field :fotos, multiple: true
       p= f.submit 'Build'
