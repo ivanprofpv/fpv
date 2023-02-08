@@ -8,6 +8,7 @@
     - if @drone.fotos.attached?
       - @drone.fotos.each do |foto|
         = image_tag url_for(foto), alt: "#{@drone.title}"
+    = @drone.content
 
   .drone_controls
     - if current_user&.author?(@drone)

@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "@rails/webpacker": "^5.0.0",
+    "@rails/actiontext": "6.1.7-2",
+    "@rails/webpacker": "^5.3.0",
+    "trix": "1.2.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },

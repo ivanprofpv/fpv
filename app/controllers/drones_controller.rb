@@ -50,6 +50,6 @@ class DronesController < ApplicationController
   end
 
   def drone_params
-    params.require(:drone).permit(:title, :body, fotos: [])
+    params.require(:drone).permit(:title, :body, :content, fotos: [])
   end
 end

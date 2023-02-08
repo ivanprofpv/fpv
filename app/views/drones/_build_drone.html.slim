@@ -9,4 +9,6 @@
       p= f.text_area :body
       p= f.label :fotos
       p= f.file_field :fotos, multiple: true
+      p= f.label :content
+      p= f.rich_text_area :content
       p= f.submit 'Build'
