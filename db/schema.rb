@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2023_02_08_074322) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
-    t.text "body"
+    t.string "body"
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "drones_id"
