@@ -1,6 +1,3 @@
-.drone_new_block
-  = link_to 'Build drone', new_drone_path
-
 .drone_block_main
   - @drones.each do |drone|
     p= link_to drone.title, drone
