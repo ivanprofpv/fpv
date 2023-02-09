@@ -5,9 +5,8 @@
     = @drone.title
   .drone_body
     = @drone.body
-    - if @drone.fotos.attached?
-      - @drone.fotos.each do |foto|
-        = image_tag url_for(foto), alt: "#{@drone.title}"
+    - if @drone.foto.attached?
+      = image_tag url_for(@drone.foto), alt: "#{@drone.title}"
     = render 'content' 
 
   .drone_controls
