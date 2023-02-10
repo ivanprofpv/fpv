@@ -1,0 +1,22 @@
+<div class="col-lg-8 col-md-10 mx-auto">
+  <div class="post_content">
+    <% if user_signed_in? %>
+      <div class="drone-errors">
+        <%= render 'shared/errors', resource: @drone %>
+      </div>
+      <div class="drone_characteristics">
+        <%= form_with model: @drone, local: false do |f| %>
+          <p><%= f.label :title %>
+          <p><%= f.text_field :title %>
+          <p><%= f.label :body %>
+          <p><%= f.text_area :body %>
+          <p><%= f.label :foto, "Logo" %>
+          <p><%= f.file_field :foto %>
+          <p><%= f.label :content %>
+          <p><%= f.rich_text_area :content %>
+          <p><%= f.submit 'Build' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

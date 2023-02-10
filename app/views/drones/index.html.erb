@@ -4,7 +4,11 @@
     <div class="col">
       <%= link_to drone_path(drone) do %>
         <div class="card">
-          <%= image_tag drone.foto, alt: "#{drone.title}", height: 450, width: 635 %>
+          <% if drone.foto.attached? %>
+            <%= image_tag drone.foto, alt: "#{drone.title}", height: 450, width: 635 %>
+          <% else %>
+            <%= image_tag '/drone_default.jpg', alt: "#{drone.title}", height: 450, width: 635 %>
+          <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= drone.title %></h5>
           </div>

@@ -1,0 +1,39 @@
+// Bootstrap overrides for this template
+.btn {
+    font-size: 14px;
+    font-weight: 800;
+    padding: 12px 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background-color: --bs-primary;
+    border-color: --bs-primary;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: --bs-white;
+        background-color: --bs-darken(--bs-primary, 7.5) !important;
+        border-color: --bs-darken(--bs-primary, 7.5) !important;
+    }
+}
+
+.btn-lg {
+    font-size: 16px;
+    padding: 25px 35px;
+}
+
+.clearfix {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.clearfix div {
+  height: 2em;
+}
