@@ -6,6 +6,8 @@ class DronesController < ApplicationController
   end
 
   def show
+    @load_category = load_drone.category_id
+    @category_cat = Category.find(@load_category)
   end
 
   def new
@@ -50,6 +52,6 @@ class DronesController < ApplicationController
   end
 
   def drone_params
-    params.require(:drone).permit(:title, :body, :content, :foto)
+    params.require(:drone).permit(:title, :body, :content, :foto, :category_id)
   end
 end

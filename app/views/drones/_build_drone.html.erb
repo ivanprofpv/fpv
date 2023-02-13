@@ -12,6 +12,8 @@
           <p><%= f.text_area :body %>
           <p><%= f.label :foto, "Logo" %>
           <p><%= f.file_field :foto %>
+          <p><%= f.label :category_id %>
+          <p><%= f.collection_select :category_id, Category.all, :id, :title, { prompt: true } %>
           <p><%= f.label :content %>
           <p><%= f.rich_text_area :content %>
           <p><%= f.submit 'Build' %>
