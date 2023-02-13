@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :load_category, only: [:show]
+  before_action :load_category, only: [:show, :update, :destroy, :edit]
 
   def index
     @categories = Category.all
@@ -20,6 +20,18 @@ class CategoriesController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @category.update(category_params)
+      flash[:good] = "Category updated successfully."
+      redirect_to @category
+    else
+      render :edit
     end
   end
 
