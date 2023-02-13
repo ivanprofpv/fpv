@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_12_105754) do
+ActiveRecord::Schema.define(version: 2023_02_13_085329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 2023_02_12_105754) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.bigint "categories_id"
-    t.index ["categories_id"], name: "index_drones_on_categories_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_drones_on_category_id"
     t.index ["user_id"], name: "index_drones_on_user_id"
   end
 
@@ -97,6 +97,6 @@ ActiveRecord::Schema.define(version: 2023_02_12_105754) do
   add_foreign_key "action_text_rich_texts", "drones", column: "drones_id"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "drones", "categories", column: "categories_id"
+  add_foreign_key "drones", "categories"
   add_foreign_key "drones", "users"
 end
