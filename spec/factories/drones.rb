@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :drone do
+    category
     title { "TitleDrone" }
     body { "BodyDrone" }
 

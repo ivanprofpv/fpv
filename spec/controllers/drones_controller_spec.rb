@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe DronesController, type: :controller do
   let(:user) { create(:user) }
-  let(:drone) { create(:drone, user: user) }
+  let(:category) { create(:category) }
+  let(:drone) { create(:drone, category: category, user: user) }
 
   describe 'GET #index' do
 
-    let(:drones) { create_list(:drone, 3, user: user) }
+    let(:drones) { create_list(:drone, 3, category: category, user: user) }
 
     before { get :index }
 
@@ -111,7 +112,7 @@ RSpec.describe DronesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let!(:drone) { create(:drone, user: user) }
+    let!(:drone) { create(:drone, category: category, user: user) }
 
     it 'delete drone-card' do
       expect { delete :destroy, params: { id: drone } }.to change(Drone, :count).by(-1)
