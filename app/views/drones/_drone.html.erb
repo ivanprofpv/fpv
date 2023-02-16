@@ -25,8 +25,19 @@
           <%= render 'shared/errors', resource: @drone %>
         </div>
         <hr>
-        Category: <%= @category_cat.title %>
         <%= render 'content' %>
+        Gallery:
+        <% if @drone.gallerys.attached? %>
+          <% @drone.gallerys.each do |pic| %>
+            <div class="col-sm-6 col-md-4">
+              <div data-controller="lightbox" class="images">
+              <%= link_to url_for(pic), 'data-toggle': 'lightbox' do %>
+                  <%= image_tag url_for(pic) %>
+              <% end %>
+            </div>
+            </div>
+          <% end %>
+        <% end %>
         <br>
         <div class="clearfix">
           <div><a class="btn btn-primary" href="#" title="#">&larr; Previous Post</a></div>
@@ -35,7 +46,7 @@
         </div>
         <div class="clearfix">
           <% if current_user&.author?(@drone) %>
-            <div><%= button_to 'Delete build', drone_path(@drone), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %></div> 
+            <div><%= button_to 'Delete build', drone_path(@drone), method: :delete, form: { data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } }, class: 'btn btn-danger' %></div> 
             <div><%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info edit-drone-link' %></div>
           <% end %>
         </div>
@@ -43,3 +54,5 @@
     </div>
   </div>
 </div>
+
+

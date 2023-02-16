@@ -22,11 +22,17 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("jquery") 
 
+require("box")
+
 require("@popperjs/core")
 
 import "bootstrap"
 import "trix"
 import "@rails/actiontext"
+import "controllers"
+import "lightgallery.js/dist/css/lightgallery.min.css"
+
+
 
 // Import the specific modules you may need (Modal, Alert, etc)
 // import { Tooltip, Popover } from "bootstrap"
