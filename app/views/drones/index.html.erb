@@ -8,10 +8,8 @@
             <%= image_tag drone.foto, alt: "#{drone.title}", height: 450, width: 635 %>
           <% else %>
             <%= image_tag '/drone_default.jpg', alt: "#{drone.title}", height: 450, width: 635 %>
+            <div class="bottom-left"><%= drone.title %></div>
           <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= drone.title %></h5>
-          </div>
         </div>
       <% end %>
     </div>
