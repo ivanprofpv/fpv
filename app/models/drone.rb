@@ -7,17 +7,6 @@ class Drone < ApplicationRecord
   has_rich_text :content
 
   validates :title, :body, presence: true
-  validate :validate_gallery_filetypes
-
-  private
-
-  def validate_gallery_filetypes
-    return unless gallerys.attached?
-
-    gallerys.each do |attachment| 
-      unless attachment.content_type.in?(%w[image/jpeg image/png image/jpg])
-        errors.add(:gallerys, 'Must be a JPEG, PNG or JPG')
-      end
-    end
-  end
+  validates :foto, :gallerys, content_type: { in: ['image/png', 'image/jpeg', 'image/jpg'], message: 'must be a JPEG, PNG or JPG' }, 
+                              size: { less_than: 5.megabytes , message: 'image is too large, max size 1 image - 5MB' }
 end

@@ -1,3 +1,6 @@
+<div class="drone-errors">
+          <%= render 'shared/errors', resource: @drone %>
+        </div>
 <% if @drone.foto.attached? %>
   <header class="masthead" style="background-image: url('<%= url_for(@drone.foto) %>')">
 <% else %>
@@ -5,44 +8,31 @@
 <% end %>
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="col-lg-12 col-md-10 mx-auto">
         <div class="post-heading">
           <h1><%= @drone.title %></h1>
           <span class="meta">Posted by
-            <a href="#">Author</a>
+            <a href="#">Author</a><br>
+            Category: <%= @category_cat.title %>
           </span>
         </div>
       </div>
     </div>
   </div>
 </header>
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-      <div class="post_content">
-        <div class="drone-errors">
-          <%= render 'shared/errors', resource: @drone %>
-        </div>
-        <hr>
-        <%= render 'content' %>
-        Gallery:
-        <%= render 'gallery' %>
-        <br>
-        <div class="clearfix">
-          <div><a class="btn btn-primary" href="#" title="#">&larr; Previous Post</a></div>
-          <div><a class="btn btn-primary" href="#" title="#">Next Post &rarr;</a></div>
-        <hr>
-        </div>
-        <div class="clearfix">
-          <% if current_user&.author?(@drone) %>
-            <div><%= button_to 'Delete build', drone_path(@drone), method: :delete, form: { data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } }, class: 'btn btn-danger' %></div> 
-            <div><%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info edit-drone-link' %></div>
-          <% end %>
-        </div>
-      </div>
-    </div>
+<body>
+  <hr>
+  <div class="clearfix">
+    <%= link_to 'Delete build', drone_path(@drone), method: :delete, form: { data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } }, class: 'btn btn-danger' %>
+    <%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info edit-drone-link' %>
   </div>
-</div>
+  <br>
+  <%= render 'content' %>
+  <br>
+  Photos:
+  <br>
+  <%= render 'gallery' %>
+  <br>
+</body>
 
 

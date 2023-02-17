@@ -6,5 +6,6 @@ RSpec.describe Drone, type: :model do
 
   it 'Authenticated user have many attached foto to dron-card' do
     expect(Drone.new.foto).to be_an_instance_of(ActiveStorage::Attached::One)
+    expect(Drone.new.gallerys).to be_an_instance_of(ActiveStorage::Attached::Many)
   end
 end

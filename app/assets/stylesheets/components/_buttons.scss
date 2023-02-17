@@ -27,13 +27,8 @@
 }
 
 .clearfix {
-  display: flex;
-  justify-content: space-between;
-  padding: 1em;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.clearfix div {
-  height: 2em;
+  float: right;
+      position: relative;
+  margin-right: 20px;
+  margin-left: 40px;
 }

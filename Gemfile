@@ -51,6 +51,7 @@ gem 'jquery-rails'
 gem "ruby-vips"
 gem 'image_processing', '~> 1.2'
 gem 'active_storage_validations'
+gem "slim-rails"
 
 group :development, :test do
   gem "rspec-rails", "~> 4.1.0"

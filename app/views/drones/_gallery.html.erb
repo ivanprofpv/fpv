@@ -1,12 +1,11 @@
-<div class="drone-errors">
-  <%= render 'shared/errors', resource: @drone %>
-</div>
 <% if @drone.gallerys.attached? %>
+<div class="grid text-center">
+  <div class="g-col-6 g-col-md-4">
   <% @drone.gallerys.each do |pic| %>
-    <div class="col-md-8">
-      <%= link_to url_for(pic), class: 'col-sm-4' do %>
-          <%= image_tag url_for(pic.variant(resize_to_fit: [500, 350])) %>
+      <%= link_to url_for(pic) do %>
+          <%= image_tag url_for(pic.variant(resize_to_fit: [500, 500])) %>
       <% end %>
-    </div>
   <% end %>
+  </div>
+</div>
 <% end %>
