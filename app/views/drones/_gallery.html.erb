@@ -1,3 +1,6 @@
+<div class="drone-errors">
+  <%= render 'shared/errors', resource: @drone %>
+</div>
 <% if @drone.gallerys.attached? %>
   <% @drone.gallerys.each do |pic| %>
     <div class="col-md-8">

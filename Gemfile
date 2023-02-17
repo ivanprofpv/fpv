@@ -45,12 +45,12 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem "slim-rails"
 gem "devise", "~> 4.8.1"
 gem 'bootstrap', '~> 5.2.2'
 gem 'jquery-rails'
 gem "ruby-vips"
 gem 'image_processing', '~> 1.2'
+gem 'active_storage_validations'
 
 group :development, :test do
   gem "rspec-rails", "~> 4.1.0"
