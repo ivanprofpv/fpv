@@ -312,6 +312,7 @@ DEPENDENCIES
   rails (~> 6.1.7)
   rails-controller-testing
   rspec-rails (~> 4.1.0)
+  ruby-vips
   sass-rails (>= 6)
   selenium-webdriver
   shoulda-matchers (~> 5.0)

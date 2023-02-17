@@ -1,0 +1,9 @@
+<% if @drone.gallerys.attached? %>
+  <% @drone.gallerys.each do |pic| %>
+    <div class="col-md-8">
+      <%= link_to url_for(pic), class: 'col-sm-4' do %>
+          <%= image_tag url_for(pic.variant(resize_to_fit: [500, 350])) %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

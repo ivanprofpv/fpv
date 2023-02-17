@@ -27,17 +27,7 @@
         <hr>
         <%= render 'content' %>
         Gallery:
-        <% if @drone.gallerys.attached? %>
-          <% @drone.gallerys.each do |pic| %>
-            <div class="col-sm-6 col-md-4">
-              <div data-controller="lightbox" class="images">
-              <%= link_to url_for(pic), 'data-toggle': 'lightbox' do %>
-                  <%= image_tag url_for(pic) %>
-              <% end %>
-            </div>
-            </div>
-          <% end %>
-        <% end %>
+        <%= render 'gallery' %>
         <br>
         <div class="clearfix">
           <div><a class="btn btn-primary" href="#" title="#">&larr; Previous Post</a></div>

@@ -22,15 +22,11 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("jquery") 
 
-require("box")
-
 require("@popperjs/core")
 
 import "bootstrap"
 import "trix"
 import "@rails/actiontext"
-import "controllers"
-import "lightgallery.js/dist/css/lightgallery.min.css"
 
 
 

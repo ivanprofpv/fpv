@@ -47,9 +47,10 @@ gem "bootsnap", require: false
 
 gem "slim-rails"
 gem "devise", "~> 4.8.1"
-gem "image_processing", "~> 1.2"
 gem 'bootstrap', '~> 5.2.2'
 gem 'jquery-rails'
+gem "ruby-vips"
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   gem "rspec-rails", "~> 4.1.0"
