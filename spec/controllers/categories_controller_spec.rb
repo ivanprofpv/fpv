@@ -47,7 +47,7 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'POST #create' do
 
-    context 'Authenticated user'
+    context 'Authenticated user' do
 
       before { login(user) }
 
@@ -66,6 +66,17 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
 
+    context 'Unauthenticated user' do
+
+      context 'with valid attributes' do
+
+        it 'saves new category in database' do
+          expect { post :create, params: { category: attributes_for(:category) } }.to change(Category, :count).by(0)
+        end
+      end
+    end
+  end
+
   describe 'GET #edit' do
 
     before { login(user) }
@@ -78,46 +89,87 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'PATCH #update' do
 
-    context 'with valid attributes' do
-      it 'check if the data is set to a variable @category in controller' do
-        patch :update, params: { id: category, category: attributes_for(:category) }
-        expect(assigns(:category)).to eq category
+    context 'Authenticated user' do
+
+      before { login(user) }
+
+      context 'with valid attributes' do
+        it 'check if the data is set to a variable @category in controller' do
+          patch :update, params: { id: category, category: attributes_for(:category) }
+          expect(assigns(:category)).to eq category
+        end
+
+        it 'change existing attributes' do
+          patch :update, params: { id: category, category: { title: 'New name category' } }
+          category.reload
+
+          expect(category.title).to eq 'New name category'
+        end
+
+        it 'redirect to update category' do
+          patch :update, params: { id: category, category: attributes_for(:category) }
+          expect(response).to redirect_to category
+        end
       end
 
-      it 'change existing attributes' do
-        patch :update, params: { id: category, category: { title: 'New name category' } }
-        category.reload
+      context 'with invalid attributes' do
 
-        expect(category.title).to eq 'New name category'
-      end
+        it 'does not update category' do
+          patch :update, params: { id: category, category: attributes_for(:category, :invalid) }
+          category.reload
 
-      it 'redirect to update category' do
-        patch :update, params: { id: category, category: attributes_for(:category) }
-        expect(response).to redirect_to category
+          expect(category.title).to eq 'DroneCategory'
+        end
       end
     end
 
-    context 'with invalid attributes' do
-
-      it 'does not update category' do
-        patch :update, params: { id: category, category: attributes_for(:category, :invalid) }
+    context 'Unauthenticated user' do
+      it 'does not update drone' do
+        patch :update, params: { id: category, category: { title: 'New name category' } }
         category.reload
 
-        expect(category.title).to eq 'DroneCategory'
+        expect(category.title).to eq category.title
+      end
+
+      it 'redirect to sign in' do
+        patch :update, params: { id: category, category: attributes_for(:category) }
+
+        expect(response).to redirect_to new_user_session_path
       end
     end
   end
 
   describe 'DELETE #destroy' do
-    let!(:category) { create(:category) }
 
-    it 'delete category' do
-      expect { delete :destroy, params: { id: category } }.to change(Category, :count).by(-1)
+    context 'Authenticated user' do
+
+      before { login(user) }
+
+      let!(:category) { create(:category) }
+
+      it 'delete category' do
+        expect { delete :destroy, params: { id: category } }.to change(Category, :count).by(-1)
+      end
+
+      it 'redirect to home page' do
+        delete :destroy, params: { id: category }
+        expect(response).to redirect_to root_path
+      end
     end
 
-    it 'redirect to home page' do
-      delete :destroy, params: { id: category }
-      expect(response).to redirect_to root_path
+    context 'Unauthenticated user' do
+
+
+      let!(:category) { create(:category) }
+
+      it 'delete category' do
+        expect { delete :destroy, params: { id: category } }.to change(Category, :count).by(0)
+      end
+
+      it 'redirect to home page' do
+        delete :destroy, params: { id: category }
+        expect(response).to redirect_to new_user_session_path
+      end
     end
   end
 end

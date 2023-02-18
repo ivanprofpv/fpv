@@ -1,4 +1,5 @@
 class DronesController < ApplicationController
+  before_action :authenticate_user!, only: %i[create update destroy edit]
   before_action :load_drone, only: [:show, :edit, :update, :destroy]
 
   def index
