@@ -6,24 +6,22 @@
 <% else %>
   <header class="masthead" style="background-image: url('/drone_default.jpg')">
 <% end %>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-md-10 mx-auto">
-        <div class="post-heading">
-          <h1><%= @drone.title %></h1>
-          <span class="meta">Posted by
-            <a href="#">Author</a><br>
-            Category: <%= @category_cat.title %>
-          </span>
-        </div>
-      </div>
+<div class="row">
+  <div class="col-lg-12 col-md-10 mx-auto">
+    <div class="post-heading">
+      <h1><%= @drone.title %></h1>
+      <span class="meta">Posted by
+        <a href="#">Author</a><br>
+        Category: <%= @category_cat.title %>
+      </span>
     </div>
   </div>
+</div>
 </header>
 <body>
   <hr>
   <div class="clearfix">
-    <%= link_to 'Delete build', drone_path(@drone), method: :delete, form: { data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } }, class: 'btn btn-danger' %>
+    <%= link_to 'Delete build', drone_path(@drone), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
     <%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info edit-drone-link' %>
   </div>
   <br>

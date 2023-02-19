@@ -10,7 +10,7 @@ feature 'User can create drone-card' do
       sign_in(user)
 
       visit root_path
-      within '.navbar-nav' do
+      within '.container' do
         click_on 'Create drone build'
       end
     end
@@ -23,6 +23,17 @@ feature 'User can create drone-card' do
 
       expect(page).to have_content 'Drone created successfully.'
       expect(page).to have_content 'Test name drone'
+    end
+
+    scenario 'Authenticated user created drone with errors', js: true do
+      sign_in(user)
+      visit root_path
+
+      within '.container' do
+        click_on 'Create drone build'
+      end
+
+      expect(page).to have_content "Title can't be blank"
     end
   end
 end

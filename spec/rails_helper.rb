@@ -36,6 +36,7 @@ RSpec.configure do |config|
   config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  Capybara.javascript_driver = :selenium_chrome
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
@@ -66,7 +67,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.after(:all) do 
+  config.after(:all) do
     FileUtils.rm_rf("#{Rails.root}/tmp/storage")
   end
 
