@@ -21,14 +21,11 @@
 <body>
   <hr>
     <div class="clearfixleft">
-      <% if current_user %>
         <td><%= render partial: 'likes/button', locals: { likeable: @drone } %></td>
-      <% end %> 
-      Likes: <%= @drone.likes.count %>
     </div>
   <div class="clearfix">
     <% if current_user&.author?(@drone) %>
-      <%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info edit-drone-link' %>
+      <%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info' %>
       <%= link_to 'Delete build', drone_path(@drone), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
     <% end %>
   </div>
