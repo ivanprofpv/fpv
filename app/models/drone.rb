@@ -1,9 +1,13 @@
 class Drone < ApplicationRecord
+  
   belongs_to :user
   belongs_to :category
 
   has_one_attached :foto, dependent: :destroy
   has_many_attached :gallerys, dependent: :destroy
+
+  has_many :likes, as: :likeable
+
   has_rich_text :content
 
   validates :title, :body, presence: true
