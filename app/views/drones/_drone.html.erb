@@ -20,10 +20,12 @@
 </header>
 <body>
   <hr>
-  <% if current_user %>
-    <td><%= render partial: 'likes/button', locals: { likeable: @drone } %></td>
-  <% end %>
-  <td>Likes: <%= @drone.likes.count %></td>
+    <div class="clearfixleft">
+      <% if current_user %>
+        <td><%= render partial: 'likes/button', locals: { likeable: @drone } %></td>
+      <% end %> 
+      Likes: <%= @drone.likes.count %>
+    </div>
   <div class="clearfix">
     <% if current_user&.author?(@drone) %>
       <%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info edit-drone-link' %>

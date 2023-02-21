@@ -1,10 +1,11 @@
 <% like = current_user.likes.find_by(likeable: likeable) %>
 <% if like.nil? %>
-  <%= button_to("Like", likes_path,  class: "btn btn-success",
+  <%= button_to("", likes_path,  class: "fa fa-thumbs-o-up",
                  params:{ like: {likeable_id: likeable.id,
                  likeable_type: likeable.class.to_s}}) %>
 <% else %>
-  <%= button_to("Unlike", like_path(like),
-                 class: "btn btn-success",
-                 method: :delete) %>
+  <%= button_to("", like_path(like),
+                 class: "fa fa-thumbs-up",
+                 method: :delete) %></i>
 <% end %>
+<%= icon('fa-brands', 'font-awesome') %>
