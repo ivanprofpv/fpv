@@ -29,8 +29,10 @@
       <%= link_to 'Delete build', drone_path(@drone), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
     <% end %>
   </div>
-  <br>
-  <%= render 'content' %>
+  <br><br>
+  <div class="content">
+    <%= render 'content' %>
+  </div>
   <br>
   Photos:
   <br>

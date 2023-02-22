@@ -1,10 +1,10 @@
 <% unless user_signed_in? %>
-  <button type="button" class="btn btn-secondary">Like <%= @drone.likes.count %></button>
-<% end %>
-<% if user_signed_in? %>
+  <%= button_to "Like #{@drone.likes.count}", user_session_path,
+                 class: "btn btn-secondary" %>
+<% else %>
   <% like = current_user.likes.find_by(likeable: likeable) %>
   <% if like.nil? %>
-    <%= button_to("Like #{@drone.likes.count}", likes_path,  class: "btn btn-secondary",
+    <%= button_to("Like #{@drone.likes.count}", likes_path, class: "btn btn-secondary",
                    params:{ like: {likeable_id: likeable.id,
                    likeable_type: likeable.class.to_s}}) %>
   <% else %>
