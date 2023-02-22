@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+
   devise_for :users, path_names: { sign_in: :login, sign_out: :logout }
-  
-  resources :drones
+
+  resources :drones do
+    resource :comments, shallow: true, only: %i[create]
+  end
+
   resources :categories
   resources :likes, only: %i[create destroy]
 

@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   has_many :drones, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, 
+         :recoverable, :rememberable, :validatable,
          :trackable, :confirmable
 
   def author?(subject)
