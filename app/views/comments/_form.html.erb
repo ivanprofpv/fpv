@@ -1,0 +1,14 @@
+<div class="post_content">
+  <% if user_signed_in? %>
+    <div class="comment-errors">
+      <%= render 'shared/errors', resource: @comment %>
+    </div>
+    <div class="create_comment">
+      <%= form_with model: [@drone, @drone.comments.new], local: false do |f| %>
+        <p><%= f.label :body, 'You comment:'%>
+        <p><%= f.text_area :body %>
+        <p><%= f.submit 'Build' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

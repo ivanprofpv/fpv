@@ -1,0 +1,3 @@
+<% @drone.comments.each do |comment| %>
+  <div class="comment_body"><%= comment.body %> - <%= comment.user.email %></div>
+<% end %>
