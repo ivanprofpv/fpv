@@ -1,14 +1,16 @@
-<div class="post_content">
+<div class="form_comment">
   <% if user_signed_in? %>
     <div class="comment-errors">
       <%= render 'shared/errors', resource: @comment %>
     </div>
-    <div class="create_comment">
       <%= form_with model: [@drone, @drone.comments.new], local: false do |f| %>
-        <p><%= f.label :body, 'You comment:'%>
-        <p><%= f.text_area :body %>
-        <p><%= f.submit 'Build' %>
+        <div class="form-floating">
+          <%= f.text_area :body, class: "form-control", placeholder: "Leave a comment here", id: "floatingTextarea" %>
+          <label for="floatingTextarea">Leave a comment here</label>
+          <div class="float-start mt-2 pt-1">
+            <%= f.submit 'Create comment', class: "btn btn-primary" %>
+          </div>
+        </div>
       <% end %>
-    </div>
   <% end %>
 </div>

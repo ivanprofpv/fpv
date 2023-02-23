@@ -20,10 +20,10 @@
 </header>
 <body>
   <hr>
-    <div class="clearfixleft">
-        <td><%= render partial: 'likes/button', locals: { likeable: @drone } %></td>
-    </div>
-  <div class="clearfix">
+  <div class="float-start pt-1">
+    <td><%= render partial: 'likes/button', locals: { likeable: @drone } %></td>
+  </div>
+  <div class="float-end pt-1">
     <% if current_user&.author?(@drone) %>
       <%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info' %>
       <%= link_to 'Delete build', drone_path(@drone), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
