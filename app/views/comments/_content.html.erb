@@ -15,8 +15,11 @@
       <p class="mt-3">
         <%= comment.body %>
         <p>
-      <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-info' %>
       </p>
+      <div class="small float-start pt-1">
+        <%= link_to 'Edit', edit_drone_comment_path(@drone, comment), class: 'btn btn-outline-primary' %>
+        <%= button_to 'Delete', drone_comment_path(@drone, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
       <div class="small d-flex justify-content-end">
         <a href="#!" class="d-flex align-items-center me-3">
           <i class="far fa-thumbs-up me-2"></i>

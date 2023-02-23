@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :find_drone, only: %i[create show update destroy ]
-  before_action :find_comment, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[create update destroy edit]
+  before_action :find_drone, only: %i[create edit update destroy ]
+  before_action :find_comment, only: %i[ update edit destroy ]
 
   def index
   end
@@ -10,7 +11,6 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comments = Comment.all
   end
 
   def create
@@ -25,15 +25,21 @@ class CommentsController < ApplicationController
   end
 
   def update
-
+    if @comment.update(comment_params)
+      flash[:good] = "Comment updated successfully."
+      redirect_to drone_path(@drone)
+    else
+      render json: @comment.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
-
+    @comment.destroy
+    flash[:good] = "Comment deleted successfully."
+    redirect_to drone_path(@drone)
   end
 
   def edit
-
   end
 
   private
