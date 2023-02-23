@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create update destroy edit]
-  before_action :find_drone, only: %i[create show update destroy edit]
-  before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :find_drone, only: %i[create show update destroy ]
+  before_action :find_comment, only: %i[ show edit update destroy ]
 
   def index
   end
@@ -40,7 +39,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :drone_id)
+    params.require(:comment).permit(:body, :drone_id, :user_id)
   end
 
   def find_drone
