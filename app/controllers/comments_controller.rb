@@ -16,12 +16,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @drone.comments.new(comment_params.merge(user_id: current_user.id))
 
-    if @comment.save
-      flash[:good] = "Comment created successfully."
-      redirect_to @drone
-    else
-      render json: @comment.errors, status: :unprocessable_entity
-    end
+    @comment.save
   end
 
   def update
@@ -35,8 +30,6 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    flash[:good] = "Comment deleted successfully."
-    redirect_to drone_path(@drone)
   end
 
   def edit

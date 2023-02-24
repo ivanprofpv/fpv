@@ -1,6 +1,6 @@
 <div class="drone-errors">
-          <%= render 'shared/errors', resource: @drone %>
-        </div>
+  <%= render 'shared/errors', resource: @drone %>
+</div>
 <% if @drone.foto.attached? %>
   <header class="masthead" style="background-image: url('<%= url_for(@drone.foto) %>')">
 <% else %>
@@ -38,6 +38,10 @@
   <br>
   <%= render 'gallery' %>
   <br>
-  <%= render 'comments/content' %>
-  <%= render 'comments/form' %>
+  <div id="comments" class="mb-3">
+    <%= render 'comments/content' %>
+  </div>
+  <div id="form_comment" class="mb-3">
+    <%= render 'comments/form' %>
+  </div>
 </body>
