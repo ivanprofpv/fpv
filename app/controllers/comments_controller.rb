@@ -20,12 +20,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update(comment_params)
-      flash[:good] = "Comment updated successfully."
-      redirect_to drone_path(@drone)
-    else
-      render json: @comment.errors, status: :unprocessable_entity
-    end
+    @comment.update(comment_params)
   end
 
   def destroy
