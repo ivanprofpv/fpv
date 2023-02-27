@@ -4,12 +4,13 @@
 <% else %>
   <% like = current_user.likes.find_by(likeable: likeable) %>
   <% if like.nil? %>
-    <%= button_to("Like #{@drone.likes.count}", likes_path, class: "btn btn-secondary",
-                   params:{ like: {likeable_id: likeable.id,
-                   likeable_type: likeable.class.to_s}}) %>
+    <%= button_to "Like #{likeable.likes.count}", likes_path, class: "btn btn-secondary",
+                   params: { like: { likeable_id: likeable.id,
+                   likeable_type: likeable.class.to_s }} %>
+  
   <% else %>
-    <%= button_to("Unlike #{@drone.likes.count}", like_path(like),
+    <%= button_to "Unlike #{likeable.likes.count}", like_path(like),
                    class: "btn btn-danger",
-                   method: :delete) %>
+                   method: :delete %>
   <% end %>
 <% end %>
