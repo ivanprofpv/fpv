@@ -83,13 +83,13 @@ ActiveRecord::Schema.define(version: 2023_02_22_204245) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "likeable_type", null: false
-    t.bigint "likeable_id", null: false
+    t.integer "like_weight"
+    t.bigint "user_id"
+    t.string "likeable_type"
+    t.bigint "likeable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
-    t.index ["user_id", "likeable_type", "likeable_id"], name: "index_likes_on_user_id_and_likeable_type_and_likeable_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
