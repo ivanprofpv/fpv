@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :drone do
-    category
     title { "TitleDrone" }
     body { "BodyDrone" }
+    category
 
     trait :invalid do
       title { nil }

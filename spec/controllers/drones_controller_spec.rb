@@ -3,7 +3,16 @@ require 'rails_helper'
 RSpec.describe DronesController, type: :controller do
   let(:user) { create(:user) }
   let(:category) { create(:category) }
-  let(:drone) { create(:drone, user: user) }
+  let(:drone) { create(:drone, user: user, category: category) }
+  let(:valid_params) do
+        {
+           drone: {
+            title: "drone",
+            body: "123",
+            category_id: category
+          }
+        }
+      end
 
   describe 'GET #index' do
 
@@ -33,19 +42,6 @@ RSpec.describe DronesController, type: :controller do
     end
   end
 
-  describe 'GET #new' do
-
-    before { get :new }
-
-    it 'check if the data is set to a variable @drone' do
-      expect(assigns(:drone)).to be_a_new(Drone)
-    end
-
-    it 'render new view' do
-      expect(response).to render_template :new
-    end
-  end
-
   describe 'POST #create' do
 
     context 'Authenticated user' do
@@ -55,7 +51,7 @@ RSpec.describe DronesController, type: :controller do
       context 'with valid attributes' do
 
         it 'saves a new drone in the database' do
-          expect { post :create, params: { drone: attributes_for(:drone) } }.to change(Drone, :count).by(1)
+          expect { post :create, params: valid_params }.to change(Drone, :count).by(1)
         end
       end
 

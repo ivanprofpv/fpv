@@ -25,15 +25,25 @@ feature 'User can create drone-card' do
       expect(page).to have_content 'Test name drone'
     end
 
-    scenario 'Authenticated user created drone with errors', js: true do
-      sign_in(user)
+    scenario 'can not create drone-card (error title and category)' do
+      fill_in 'Title', with: ''
+      fill_in 'Body', with: 'Test body'
+      click_on 'Build'
+
+      expect(page).to have_content "Title can't be blank"
+      expect(page).to have_content "Category must exist"
+    end
+  end
+
+  describe 'Unauthenticated user' do
+    scenario 'Can not created drone' do
       visit root_path
 
       within '.container' do
         click_on 'Create drone build'
       end
 
-      expect(page).to have_content "Title can't be blank"
+      expect(page).to have_content 'You need to sign in or sign up before continuing.'
     end
   end
 end
