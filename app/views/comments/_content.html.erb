@@ -26,9 +26,6 @@
           <%= link_to 'Delete', drone_comment_path(@drone, comment), method: :delete, remote: true, data: { confirm: 'Are you sure?', comment_id: comment.id }, class: 'btn btn-danger' %>
         </div>
       <% end %> 
-      <div class="small float-end pt-1">
-        <td><%= render partial: 'likes/button', locals: { likeable: comment } %></td>
-      </div>
       <br>
       <%= form_with model: [@drone, comment], local: false, class: 'hidden', html: { id: "edit-comment-#{comment.id}" } do |f| %>
         <div class="form-floating">

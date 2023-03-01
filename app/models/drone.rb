@@ -6,7 +6,6 @@ class Drone < ApplicationRecord
   has_one_attached :foto, dependent: :destroy
   has_many_attached :gallerys, dependent: :destroy
 
-  has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   has_rich_text :content

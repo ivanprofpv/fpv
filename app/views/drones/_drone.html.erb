@@ -20,9 +20,6 @@
 </header>
 <body>
   <hr>
-  <div class="float-start pt-1">
-    <td><%= render partial: 'likes/button', locals: { likeable: @drone } %></td>
-  </div>
   <div class="float-end pt-1">
     <% if current_user&.author?(@drone) %>
       <%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info' %>
