@@ -17,8 +17,6 @@
  // Import variables
  @import "./variables";
 
- @import "bootstrap";
-
  // Global CSS
  @import "./global";
 
@@ -28,5 +26,7 @@
 
  // Components
  @import "./components/buttons";
+
+ @import "bootstrap";
 
  @import "font-awesome";
