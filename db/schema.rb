@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_01_104458) do
+ActiveRecord::Schema.define(version: 2023_03_01_180514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2023_03_01_104458) do
     t.bigint "drone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
     t.index ["drone_id"], name: "index_comments_on_drone_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
