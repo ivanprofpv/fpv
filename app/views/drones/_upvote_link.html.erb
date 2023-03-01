@@ -1,0 +1,11 @@
+<%= content_tag "div", id: "upvote-#{@drone.id}" do %>
+  <%= link_to upvote_drone_path(@drone), method: :patch, remote: true do %>
+    <% if current_user.voted_up_on? @drone %>
+      <i class="fa-solid fa-heart fa-xl" style="color: red;"></i>
+      Remove like
+    <% else %>
+      <i class="fa-regular fa-heart fa-xl"></i>
+      Like
+    <% end %>
+  <% end %>
+<% end %>

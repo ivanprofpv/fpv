@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :confirmable
 
+  acts_as_voter
+
   def author?(subject)
     self.id == subject.user_id
   end

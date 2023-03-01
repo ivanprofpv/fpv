@@ -1,9 +1,18 @@
 class DronesController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy edit new]
-  before_action :load_drone, only: [:show, :edit, :update, :destroy]
+  before_action :load_drone, only: [:show, :edit, :update, :destroy, :upvote]
 
   def index
     @drones = Drone.all
+  end
+
+  def upvote
+    if current_user.voted_up_on? @drone
+      @drone.unvote_by current_user
+    else
+      @drone.upvote_by current_user
+    end
+    render "vote.js.erb"
   end
 
   def show

@@ -52,6 +52,7 @@ gem "ruby-vips"
 gem 'image_processing', '~> 1.2'
 gem 'active_storage_validations'
 gem "font-awesome-sass", "~> 6.3.0"
+gem 'acts_as_votable'
 
 group :development, :test do
   gem "rspec-rails", "~> 4.1.0"
