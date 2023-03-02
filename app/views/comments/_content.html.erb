@@ -1,7 +1,7 @@
 <div class="comment-errors">
   <%= render 'shared/errors', resource: @comment %>
 </div>
-<% @drone.comments.each do |comment| %>
+<% @drone.comments.find_each(order: :asc) do |comment| %>
 <div class="comment_<%= comment.id %>">
   <div class="card">
     <div class="card-body">
@@ -12,13 +12,13 @@
         <div>
           <h6 class="fw-bold text-primary mb-1"><%= comment.user.email %></h6>
           <p class="text-muted small mb-0">
-            Written - <%= comment.created_at.strftime("%B %d %Y, %k:%M") %>
+            Written - <%= comment.created_at.strftime("%B %d %Y, %k:%M") %>, update:
+            <%= comment.updated_at.strftime("%B %d %Y, %k:%M:%S") %>
           </p>
         </div>
       </div>
-      <p class="mt-3">
+      <p class="mt-1">
         <%= comment.body %>
-        <p>
       </p>
       <% if current_user&.author?(comment) %>
         <div class="small float-start pt-1">
@@ -26,7 +26,7 @@
           <%= link_to 'Delete', drone_comment_path(@drone, comment), method: :delete, remote: true, data: { confirm: 'Are you sure?', comment_id: comment.id }, class: 'btn btn-danger' %>
         </div>
       <% end %>
-      <div class="small float-end pt-1">
+      <div class="small float-end pt-4">
         <td><%= render partial: 'comments/upvote_link', locals: { comment: comment }  %></td>
       </div>
       <br><br>

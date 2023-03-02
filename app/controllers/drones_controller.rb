@@ -4,6 +4,7 @@ class DronesController < ApplicationController
 
   def index
     @drones = Drone.all.order(created_at: :desc)
+    @comments = @drone.comments.all.order(created_at: :desc)
   end
 
   def upvote

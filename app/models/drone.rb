@@ -10,7 +10,7 @@ class Drone < ApplicationRecord
 
   has_rich_text :content
 
-  acts_as_votable
+  acts_as_votable cacheable_strategy: :update_columns
 
   validates :title, :body, presence: true
   validates :foto, :gallerys, content_type: { in: ['image/png', 'image/jpeg', 'image/jpg'], message: 'must be a JPEG, PNG or JPG' },
