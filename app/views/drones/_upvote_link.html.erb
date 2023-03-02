@@ -1,9 +1,16 @@
 <%= content_tag "div", id: "upvote-#{@drone.id}" do %>
-  <b><%= @drone.cached_votes_total %></b>
-  <%= link_to upvote_drone_path(@drone), method: :patch, remote: true do %>
-    <% if current_user.voted_up_on? @drone %>
-      <i class="fa-solid fa-heart fa-xl" style="color: red;"></i>
-    <% else %>
+  <% if user_signed_in? %>
+    <b><%= @drone.cached_votes_total %></b>
+    <%= link_to upvote_drone_path(@drone), method: :patch, remote: true do %>
+      <% if current_user.voted_up_on? @drone %>
+        <i class="fa-solid fa-heart fa-xl" style="color: red;"></i>
+      <% else %>
+        <i class="fa-regular fa-heart fa-xl"></i>
+      <% end %>
+    <% end %>
+  <% else %>
+    <b><%= @drone.cached_votes_total %></b>
+    <%= link_to new_user_session_path do %>
       <i class="fa-regular fa-heart fa-xl"></i>
     <% end %>
   <% end %>

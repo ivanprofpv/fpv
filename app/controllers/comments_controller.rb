@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create update destroy edit]
+  before_action :authenticate_user!, only: %i[create update destroy edit upvote]
   before_action :find_drone, only: %i[create edit update destroy ]
   before_action :find_comment, only: %i[ update edit destroy upvote ]
 
   def index
+    @
   end
 
   def upvote
