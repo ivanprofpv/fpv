@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     member do
       patch "upvote", to: "drones#upvote"
     end
-    resources :comments
+    resources :comments, only: %i[ create upvote new update destroy ]
   end
 
   resources :comments do

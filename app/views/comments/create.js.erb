@@ -1,6 +1,6 @@
 <% if @comment.errors.any? %>
   $('.comment-errors').html('<%= j render 'shared/errors', resource: @comment %>')
 <% else %>
-  $("#comments").html('<%= j render 'content' %>');
+  $("#comments").append('<%= j render @comment %>');
   $("#form_comment").html("<%= j render 'comments/form' %>");
 <% end %>
