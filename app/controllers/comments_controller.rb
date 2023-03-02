@@ -1,19 +1,18 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy edit]
-  before_action :find_drone, only: %i[create edit update destroy upvote]
-  before_action :find_comment, only: %i[ update edit destroy upvote]
+  before_action :find_drone, only: %i[create edit update destroy ]
+  before_action :find_comment, only: %i[ update edit destroy upvote ]
 
   def index
   end
 
   def upvote
-    @comment = @drone.comments.find(params[:id])
-
     if current_user.voted_up_on? @comment
       @comment.unvote_by current_user
     else
       @comment.upvote_by current_user
     end
+    render 'vote.js.erb'
   end
 
   def new

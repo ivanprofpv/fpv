@@ -6,12 +6,14 @@ Rails.application.routes.draw do
     member do
       patch "upvote", to: "drones#upvote"
     end
-    resources :comments do
+    resources :comments
+  end
+
+  resources :comments do
       member do
         patch "upvote", to: "comments#upvote"
       end
     end
-  end
 
   resources :categories
 
