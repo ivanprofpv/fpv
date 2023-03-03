@@ -18,31 +18,15 @@
   </div>
 </div>
 </header>
-<body>
-  <hr>
-  <div class="float-start pt-1">
-    <td><%= render partial: 'drones/upvote_link' %>
-   </td>
-  </div>
-  <div class="float-end pt-1">
-    <% if current_user&.author?(@drone) %>
-      <%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info btn-sm' %>
-      <%= link_to 'Delete build', drone_path(@drone), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-    <% end %>
-  </div>
-  <br><br>
-  <div class="content">
-    <%= render 'content' %>
-  </div>
-  <br>
-  Photos:
-  <br>
-  <%= render 'gallery' %>
-  <br>
-  <div id="comments" class="mb-3">
-    <%= render 'comments/comment' %>
-  </div>
-  <div id="form_comment" class="mb-3">
-    <%= render 'comments/form' %>
-  </div>
-</body>
+<hr>
+<div class="float-start pt-1">
+  <td><%= render partial: 'drones/upvote_link' %>
+ </td>
+</div>
+<div class="float-end pt-1">
+  <% if current_user&.author?(@drone) %>
+    <%= link_to 'Edit', edit_drone_path(@drone), class: 'btn btn-info btn-sm' %>
+    <%= link_to 'Delete build', drone_path(@drone), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+  <% end %>
+</div>
+<br><br>

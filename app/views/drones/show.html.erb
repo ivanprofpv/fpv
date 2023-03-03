@@ -1,1 +1,17 @@
 <%= render @drone %>
+
+<div class="content">
+  <%= render 'content' %>
+</div>
+<br>
+Photos:
+<br>
+  <%= render 'gallery' %>
+<br>
+
+<div id="comments" class="mb-3">
+  <%= render 'comments/comment' %>
+</div>
+<div id="form_comment" class="mb-3">
+  <%= render 'comments/form', comment: @comment %>
+</div>
