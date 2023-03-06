@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :component do
     title { "MyString" }
-    url { "MyString" }
+    url { "https://ya.ru" }
     price { 1 }
   end
 end

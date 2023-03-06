@@ -22,6 +22,9 @@ class DronesController < ApplicationController
 
   def new
     @drone = Drone.new
+    5.times do
+      @drone.components.build
+    end
   end
 
   def create
@@ -62,6 +65,6 @@ class DronesController < ApplicationController
   end
 
   def drone_params
-    params.require(:drone).permit(:title, :body, :content, :foto, :category_id, gallerys: [])
+    params.require(:drone).permit(:title, :body, :content, :foto, :category_id, components_attributes: [:title, :url, :price, :_destroy], gallerys: [])
   end
 end
