@@ -1,5 +1,5 @@
-<%= @drone.components.each do |component| %>
+<%= @drone.components.find_each(order: :asc) do |component| %>
 <p class="mt-1">
-  <%= component.title %>
+  <%= component.title %> - <%= component.url %> - <%= component.price %>
 </p>
 <% end %>

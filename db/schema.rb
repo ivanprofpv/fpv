@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_04_122628) do
+ActiveRecord::Schema.define(version: 2023_03_06_191351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(version: 2023_03_04_122628) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "component_categories", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "components", force: :cascade do |t|
     t.string "title", null: false
     t.string "url"
@@ -80,6 +86,8 @@ ActiveRecord::Schema.define(version: 2023_03_04_122628) do
     t.bigint "drone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "component_category_id", null: false
+    t.index ["component_category_id"], name: "index_components_on_component_category_id"
     t.index ["drone_id"], name: "index_components_on_drone_id"
   end
 
@@ -139,6 +147,7 @@ ActiveRecord::Schema.define(version: 2023_03_04_122628) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "drones"
   add_foreign_key "comments", "users"
+  add_foreign_key "components", "component_categories"
   add_foreign_key "components", "drones"
   add_foreign_key "drones", "categories"
   add_foreign_key "drones", "users"
