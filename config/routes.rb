@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :components
   end
 
+  resources :component_categories
+
   resources :comments do
       member do
         patch "upvote", to: "comments#upvote"

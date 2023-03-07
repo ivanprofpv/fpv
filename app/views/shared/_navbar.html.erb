@@ -19,7 +19,10 @@
             <% if user_signed_in? %>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">You profile</a></li>
+                <li><a class="dropdown-item" href="<%= new_component_category_path %>">Create component category</a></li>
                 <li><a class="dropdown-item" href="<%= new_category_path %>">Create category</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="<%= component_categories_path %>">Component category</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="<%= destroy_user_session_path %>">Log out</a></li>
               </ul>

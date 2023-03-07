@@ -1,0 +1,5 @@
+<% @component_category.each do |component_category| %>
+  <%= link_to component_category_path(component_category) do %>
+    <li><%= component_category.title %></li>
+  <% end %>
+<% end %>

@@ -1,0 +1,16 @@
+<div class="col-lg-8 col-md-10 mx-auto">
+  <div class="post_content">
+    <% if user_signed_in? %>
+      <div class="drone-errors">
+        <%= render 'shared/errors', resource: @component_category %>
+      </div>
+      <div class="category_characteristics">
+        <%= form_with model: @component_category, local: false do |f| %>
+          <p><%= f.label :title %>
+          <p><%= f.text_field :title %>
+          <p><%= f.submit 'Update' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
