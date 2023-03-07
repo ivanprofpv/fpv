@@ -35,8 +35,6 @@ class DronesController < ApplicationController
     if @drone.save
       flash[:good] = "Drone created successfully."
       redirect_to @drone
-    else
-      render :new
     end
   end
 

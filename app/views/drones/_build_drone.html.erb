@@ -5,7 +5,7 @@
         <%= render 'shared/errors', resource: @drone %>
       </div>
       <div class="drone_characteristics">
-        <%= form_with model: @drone, local: true do |f| %>
+        <%= form_with model: @drone, local: false do |f| %>
           <p><%= f.label :title %>
           <p><%= f.text_field :title %>
           <p><%= f.label :body %>

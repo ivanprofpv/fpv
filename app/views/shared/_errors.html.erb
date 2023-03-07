@@ -1,8 +1,11 @@
+<br>
 <% if resource&.errors.present? %>
-  <%= "#{resource.errors.count} error(s) detected: " %>
-  <ul>
-    <% resource.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+  <div class="alert alert-danger" role="alert">
+    <%= "#{resource.errors.count} error(s) detected: " %>
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
     <% end %>
-  </ul>
+      </ul>
+  </div>
 <% end %>

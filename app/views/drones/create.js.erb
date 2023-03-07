@@ -1,0 +1,3 @@
+<% if @drone.errors.any? %>
+  $('.drone-errors').html('<%= j render 'shared/errors', resource: @drone %>')
+<% end %>
