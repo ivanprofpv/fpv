@@ -1,0 +1,27 @@
+<% if user_signed_in? %>
+  <div class="component-errors">
+    <%= render 'shared/errors', resource: @component %>
+  </div>
+  <div class="drone_characteristics">
+    <%= form_with model: [@drone, @drone.components.new], local: false do |f| %>
+      <div class="row g-3">
+        <div class="col-auto">
+          <%= f.collection_select(:component_category_id, ComponentCategory.all, :id, :title,
+                                 {prompt: "Select One"}, class: "form-select", id: "autoSizingSelect") %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.text_field :title, class: "form-control", placeholder: "Name component" %>
+        </div>
+        <div class="col-sm">
+          <%= f.text_field :url, class: "form-control", placeholder: "Url component" %>
+        </div>
+        <div class="col-sm">
+          <%= f.text_field :price, class: "form-control", placeholder: "Price component" %>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">Create component</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

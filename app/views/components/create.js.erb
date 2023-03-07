@@ -1,0 +1,6 @@
+<% if @component.errors.any? %>
+  $('.component-errors').html('<%= j render 'shared/errors', resource: @component %>')
+<% else %>
+  $("#components").html('<%= j render 'component' %>');
+  $("#form_components").html("<%= j render 'components/form' %>");
+<% end %>
