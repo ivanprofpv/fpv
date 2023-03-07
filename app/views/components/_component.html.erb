@@ -1,5 +1,28 @@
-<%= @drone.components.find_each(order: :asc) do |component| %>
-<p class="mt-1">
-  <%= component.title %> - <%= component.url %> - <%= component.price %>
-</p>
-<% end %>
+<table class="table table-light table-hover">
+  <thead>
+  <tr>
+    <th scope="col"></th>
+    <th scope="col">Name component</th>
+    <th scope="col">Url</th>
+    <th scope="col">Price</th>
+  </tr>
+</thead>
+  <%= @drone.components.find_each(order: :asc) do |component| %>
+  <tbody>
+    <tr>
+      <th scope="row"><%= component.component_category.title %></th>
+      <td><%= component.title %></td>
+      <% if component.url.present? %>
+        <td><%= link_to 'click here', component.url %></td>
+      <% else %>
+        <td>-</td>
+      <% end %>
+      <% if component.price.present? %>
+        <td><%= component.price %></td>
+      <% else %>
+        <td>-</td>
+      <% end %>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
