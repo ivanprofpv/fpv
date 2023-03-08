@@ -25,4 +25,7 @@
     </tr>
   </tbody>
   <% end %>
-</table>
+  </table>
+
+  <th>Total price:</th>
+  <%= Component.where(drone_id: @drone).pluck(:price).sum(&:to_i) %>

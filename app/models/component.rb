@@ -8,5 +8,4 @@ class Component < ApplicationRecord
   validates :title, presence: true
   validates_format_of :url, allow_blank: true, :with => /\A(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?\Z/i
   # validates :price, numericality: { only_integer: true }
-
 end
