@@ -3,8 +3,9 @@
   <div class="component-errors">
     <%= render 'shared/errors', resource: @component %>
   </div>
-  <div class="drone_characteristics">
-    <%= form_with model: [@drone, @drone.components.new], local: false do |f| %>
+  <div class="form_components">
+    <%= form_with model: [@drone, @drone.components.new], local: false, class: 'hidden',
+                                                          html: { id: "add-component-link-#{@drone.id}" } do |f| %>
       <div class="row g-3">
         <div class="col-auto">
           <%= f.collection_select(:component_category_id, ComponentCategory.all, :id, :title,
@@ -26,3 +27,4 @@
     <% end %>
   </div>
 <% end %>
+<%= link_to 'Add component', '#', class: 'btn btn-info add-component-link', data: { drone_id: @drone.id } %>

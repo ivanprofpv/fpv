@@ -22,6 +22,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("jquery")
 require("comments/edit")
+require("components/add_component")
 
 require("@popperjs/core")
 

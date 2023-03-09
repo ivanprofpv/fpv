@@ -15,4 +15,4 @@ drone = Drone.create!(title: "Test drone", body: "test body", category_id: 1, us
 
 Component.destroy_all
 
-pc = Component.create!(title: "Flight controller", price: 25, drone_id: 1, component_category_id: 2)
+pc2 = Component.create!(title: "Flight controller", price: 25, drone_id: 1, component_category_id: 2)
