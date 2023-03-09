@@ -4,5 +4,6 @@ $(document).on('turbolinks:load', function(){
     $(this).hide();
     var droneId = $(this).data('droneId');
     $('form#add-component-link-' + droneId).removeClass('hidden')
+    $('#component_update').hide();
   })
 });

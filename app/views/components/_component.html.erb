@@ -6,29 +6,43 @@
     <th scope="col">Name component</th>
     <th scope="col">Url</th>
     <th scope="col">Price</th>
+    <% if user_signed_in? && current_user&.author?(@drone) %>
+      <th scope="col">Settings</th>
+    <% end %>
   </tr>
 </thead>
   <%= @drone.components.find_each(order: :asc) do |component| %>
-  <tbody>
-    <tr>
-      <th scope="row"><%= component.component_category.title %></th>
-      <td><%= component.title %></td>
-      <% if component.url.present? %>
-        <td><%= link_to 'click here', component.url %></td>
-      <% else %>
-        <td>-</td>
-      <% end %>
-      <% if component.price.present? %>
-        <td><%= component.price %></td>
-      <% else %>
-        <td>-</td>
-      <% end %>
-    </tr>
-    <% end %>
+  <tbody id="component_<%= component.id %>">
+      <tr>
+        <th scope="row"><%= component.component_category.title %></th>
+        <td><%= component.title %></td>
+        <% if component.url.present? %>
+          <td><%= link_to 'click here', component.url %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if component.price.present? %>
+          <td><%= component.price %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if user_signed_in? && current_user&.author?(@drone) %>
+          <td>
+            <%= link_to 'Edit', '#', remote: true, data: { component_id: component.id },
+                                     class: 'btn btn-outline-primary btn-sm edit-component-link' %>
+            <%= link_to 'Delete', drone_component_path(@drone, component), method: :delete, remote: true,
+                                    data: { confirm: 'Are you sure?', component_id: component.id },
+                                    class: 'btn btn-danger btn-sm' %>
+          </td>
+        <% end %>
+      </tr>
+  <% end %>
   </tbody>
   <% if @drone.components.present? %>
     <caption><b>Total price: <%= @sum_price %></b></caption>
-  <% end %>  
+  <% end %>
   </table>
 </div>
-
+<div id='component_update'>
+  <%= render 'components/update' %>
+</div>

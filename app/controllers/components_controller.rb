@@ -1,6 +1,7 @@
 class ComponentsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_drone, only: %i[ create ]
+  before_action :find_component, only: %i[ update edit destroy ]
 
   def new
     @component = Component.new
@@ -14,6 +15,14 @@ class ComponentsController < ApplicationController
     @component = @drone.components.new(component_params)
 
     @component.save
+  end
+
+  def update
+    @drone = @component.drone
+    @component.update(component_params)
+  end
+
+  def edit
   end
 
   def destroy

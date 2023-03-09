@@ -23,6 +23,7 @@ require("@rails/activestorage").start()
 require("jquery")
 require("comments/edit")
 require("components/add_component")
+require("components/edit")
 
 require("@popperjs/core")
 

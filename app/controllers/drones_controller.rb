@@ -61,6 +61,7 @@ class DronesController < ApplicationController
 
   def category_component_count
     ComponentCategory.count
+    render 'components/component'
   end
 
   def price_sum

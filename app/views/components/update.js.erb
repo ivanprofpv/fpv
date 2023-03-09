@@ -1,0 +1,5 @@
+<% unless @component.errors.present? %>
+  $('#component_<%= @component.id %>').remove();
+  $('#components').html('<%= j render 'component' %>');
+  $("#form_components").html("<%= j render 'components/form' %>");
+<% end %>
