@@ -61,7 +61,6 @@ class DronesController < ApplicationController
 
   def category_component_count
     ComponentCategory.count
-    render 'components/component'
   end
 
   # enable after setting action_cable
