@@ -18,12 +18,6 @@
           <p><%= f.collection_select :category_id, Category.all, :id, :title, { prompt: true } %>
           <p><%= f.label :content %>
           <p><%= f.rich_text_area :content %>
-            <p><%= f.fields_for :components do |c| %>
-                 <p><%= c.collection_select :component_category_id, ComponentCategory.all, :id, :title, { prompt: 'Select One' } %>
-                 <%= c.text_field :title, placeholder: "Name item" %>
-                 <%= c.text_field :url, placeholder: "Url" %>
-                 <%= c.text_field :price, placeholder: "Price" %>
-               <% end %>
           <p><%= f.submit 'Update' %>
         <% end %>
       </div>

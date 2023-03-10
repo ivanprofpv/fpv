@@ -14,11 +14,10 @@
  *= require_self
  */
 
+ @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
  // Import variables
  @import "./variables";
-
- // Global CSS
- @import "./global";
 
  @import "bootstrap";
 

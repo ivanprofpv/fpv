@@ -1,5 +1,4 @@
-<div class="table-responsive-sm">
-<table class="table align-middle table-light table-hover">
+<table class="table table-hover">
   <thead>
   <tr>
     <th scope="col"></th>
@@ -11,6 +10,7 @@
     <% end %>
   </tr>
 </thead>
+  <% @component2 = Component.where(drone_id: @drone).pluck(:price) %>
   <%= @drone.components.find_each(order: :asc) do |component| %>
   <tbody id="component_<%= component.id %>">
       <tr>
@@ -38,11 +38,8 @@
       </tr>
   <% end %>
   </tbody>
-  <% if @drone.components.present? %>
-    <caption><b>Total price: <%= @sum_price %></b></caption>
-  <% end %>
-  </table>
-</div>
+  <caption><b>Total price: <%= @component2.sum { |e| e.to_i } %></b></caption>
+</table>
 <div id='component_update'>
   <%= render 'components/update' %>
 </div>
