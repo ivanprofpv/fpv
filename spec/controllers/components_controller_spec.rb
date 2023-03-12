@@ -4,7 +4,18 @@ RSpec.describe ComponentsController, type: :controller do
   let(:user) { create(:user) }
   let(:other_user) { create(:user) }
   let(:category) { create(:category) }
+  let(:component_category) { create(:component_category) }
   let(:drone) { create(:drone, user: user, category: category) }
+  let(:drone_other_user) { create(:drone, user: other_user, category: category) }
+  let(:valid_params) do
+        {  drone_id: drone.id, component_category_id: component_category.id,
+           component: {
+            title: "drone",
+            url: "",
+            price: 1
+          }
+        }
+      end
 
   describe 'POST #create' do
     context 'Authenticated user can add component' do
@@ -12,12 +23,9 @@ RSpec.describe ComponentsController, type: :controller do
         before { login(user) }
 
         it 'save drone component' do
-          expect do
-            post :create, params: { drone_id: drone,
-                                    component: attributes_for(:component) },
-                                    format: :js
-          end.to change(Component, :count).by(1)
+          expect { post :create, params: valid_params }.to change(Component, :count).by(1)
         end
+
 
         it 'render create' do
           post :create, params: { drone_id: drone,
@@ -49,13 +57,12 @@ RSpec.describe ComponentsController, type: :controller do
       end
     end
 
-    context 'Unauthenticated user can add comment' do
-      it 'does not save drone comment' do
+    context 'Unauthenticated user can add component' do
+      it 'does not save drone component' do
         expect do
           post :create, params: { drone_id: drone,
                                   component: attributes_for(:component) },
                                   format: :js
-
         end.not_to change(Component, :count)
       end
     end
@@ -63,7 +70,7 @@ RSpec.describe ComponentsController, type: :controller do
 
   describe 'PATCH #update' do
 
-    let(:component) { create(:component, drone_id: drone.id) }
+    let!(:component) { create(:component, drone_id: drone.id, component_category_id: component_category.id) }
 
     context 'authenticated user' do
       before { login(user) }
@@ -71,35 +78,26 @@ RSpec.describe ComponentsController, type: :controller do
         context "with user's component" do
           it 'changes component attributes' do
             patch :update, params: { id: component, component: { title: 'new body', url: 'https://yandex.ru', price: '2' } }, format: :js
+            component.reload
             expect(component.title).to eq 'new body'
             expect(component.url).to eq 'https://yandex.ru'
-            expect(component.price).to eq '2'
+            expect(component.price).to eq 2
           end
 
           it 'renders update view' do
             patch :update, params: { id: component, component: { title: 'new body', url: 'https://yandex.ru', price: '2' } }, format: :js
             expect(response).to render_template :update
           end
-
-          it "is comment user's" do
-            patch :update, params: { id: component, component: { title: 'new body', url: 'https://yandex.ru', price: '2' } }, format: :js
-            expect(assigns(:component).user).to eq user
-          end
         end
 
-        context "with other's comment" do
-          let!(:component) { create(:component, drone_id: drone.id) }
+        context "with other's component" do
+          let!(:component) { create(:component, drone_id: drone_other_user.id, component_category_id: component_category.id) }
 
-          it 'not changes comment attributes' do
+          it 'not changes component attributes' do
             patch :update, params: { id: component, component: { title: 'new body', url: 'https://yandex.ru', price: '2' } }, format: :js
             expect(component.title).to_not eq 'new body'
             expect(component.url).to_not eq 'https://yandex.ru'
             expect(component.price).to_not eq '2'
-          end
-
-          it "is not comment user's" do
-            patch :update, params: { id: component, component: { title: 'new body', url: 'https://yandex.ru', price: '2' } }, format: :js
-            expect(assigns(:component).user).to_not eq user
           end
         end
       end
@@ -152,7 +150,7 @@ RSpec.describe ComponentsController, type: :controller do
       before { login(user) }
 
       context 'component that the user created' do
-        let!(:component) { create(:component, drone_id: drone.id) }
+        let!(:component) { create(:component, drone_id: drone.id, component_category_id: component_category.id) }
 
         it 'delete the component' do
           expect { delete :destroy, params: { id: component }, format: :js }.to change(Component, :count).by(-1)
@@ -161,7 +159,7 @@ RSpec.describe ComponentsController, type: :controller do
     end
 
     context 'unauthenticated user' do
-      let!(:component) { create(:component, drone_id: drone.id) }
+      let!(:component) { create(:component, drone_id: drone.id, component_category_id: component_category.id) }
 
       it 'unsuccessful attempt to delete someone another component' do
         expect { delete :destroy, params: { id: component }, format: :js }.to_not change(Component, :count)

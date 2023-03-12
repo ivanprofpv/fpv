@@ -1,5 +1,5 @@
 <%= @drone.components.find_each(order: :asc) do |component| %>
-  <%= form_with model: [@drone, component], local: false, class: 'hidden', html: { id: "edit-component-link-#{component.id}" } do |f| %>
+  <%= form_with model: component, local: false, class: 'hidden', html: { id: "edit-component-link-#{component.id}" } do |f| %>
     <div class="row g-3">
       <div class="col-auto">
         <%= f.collection_select(:component_category_id, ComponentCategory.all, :id, :title,

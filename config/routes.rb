@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       patch "upvote", to: "drones#upvote"
     end
     resources :comments, only: %i[ create upvote new update destroy ]
-    resources :components
+    resources :components, shallow: true
   end
 
   resources :component_categories

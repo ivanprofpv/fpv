@@ -18,7 +18,6 @@ class DronesController < ApplicationController
   def show
     @load_category = load_drone.category_id
     @category_cat = Category.find(@load_category)
-    # price_sum
   end
 
   def new
@@ -62,11 +61,6 @@ class DronesController < ApplicationController
   def category_component_count
     ComponentCategory.count
   end
-
-  # enable after setting action_cable
-  # def price_sum
-  #   @sum_price = Component.where(drone_id: @drone).pluck(:price).sum(&:to_i)
-  # end
 
   def load_drone
     @drone = Drone.with_attached_foto.with_attached_gallerys.find(params[:id])

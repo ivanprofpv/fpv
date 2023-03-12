@@ -29,7 +29,7 @@
           <td>
             <%= link_to 'Edit', '#', remote: true, data: { component_id: component.id },
                                      class: 'btn btn-outline-primary btn-sm edit-component-link' %>
-            <%= link_to 'Delete', drone_component_path(@drone, component), method: :delete, remote: true,
+            <%= link_to 'Delete', component_path(@drone, component), method: :delete, remote: true,
                                     data: { confirm: 'Are you sure?', component_id: component.id },
                                     class: 'btn btn-danger btn-sm' %>
           </td>
