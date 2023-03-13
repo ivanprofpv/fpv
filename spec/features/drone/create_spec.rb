@@ -9,10 +9,7 @@ feature 'User can create drone-card' do
     background do
       sign_in(user)
 
-      visit root_path
-      within '.container' do
-        click_on 'Create drone build'
-      end
+      visit new_drone_path
     end
 
     scenario 'create drone-card' do
@@ -25,7 +22,7 @@ feature 'User can create drone-card' do
       expect(page).to have_content 'Test name drone'
     end
 
-    scenario 'can not create drone-card (error title and category)' do
+    scenario 'can not create drone-card (error title and category)', js: true do
       fill_in 'Title', with: ''
       fill_in 'Body', with: 'Test body'
       click_on 'Build'
