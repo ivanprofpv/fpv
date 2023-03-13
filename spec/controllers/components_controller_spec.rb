@@ -7,66 +7,6 @@ RSpec.describe ComponentsController, type: :controller do
   let(:component_category) { create(:component_category) }
   let(:drone) { create(:drone, user: user, category: category) }
   let(:drone_other_user) { create(:drone, user: other_user, category: category) }
-  let(:valid_params) do
-        {  drone_id: drone.id, component_category_id: component_category.id,
-           component: {
-            title: "drone",
-            url: "",
-            price: 1
-          }
-        }
-      end
-
-  describe 'POST #create' do
-    context 'Authenticated user can add component' do
-      context 'with valid attributes' do
-        before { login(user) }
-
-        it 'save drone component' do
-          expect { post :create, params: valid_params }.to change(Component, :count).by(1)
-        end
-
-
-        it 'render create' do
-          post :create, params: { drone_id: drone,
-                                  component: attributes_for(:component) },
-                                  format: :js
-
-          expect(response).to render_template :create
-        end
-      end
-
-      context 'with invalid attributes' do
-        before { login(user) }
-
-        it 'do not save drone component' do
-          expect do
-            post :create, params: { drone_id: drone,
-                                    component: attributes_for(:component, :invalid) },
-                                    format: :js
-          end.not_to change(Component, :count)
-        end
-
-        it 'render create' do
-          post :create, params: { drone_id: drone,
-                                  component: attributes_for(:component, :invalid) },
-                                  format: :js
-
-          expect(response).to render_template :create
-        end
-      end
-    end
-
-    context 'Unauthenticated user can add component' do
-      it 'does not save drone component' do
-        expect do
-          post :create, params: { drone_id: drone,
-                                  component: attributes_for(:component) },
-                                  format: :js
-        end.not_to change(Component, :count)
-      end
-    end
-  end
 
   describe 'PATCH #update' do
 

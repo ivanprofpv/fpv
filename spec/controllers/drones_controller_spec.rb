@@ -46,7 +46,10 @@ RSpec.describe DronesController, type: :controller do
 
     context 'Authenticated user' do
 
-      before { login(user) }
+      before :each do
+        login(user)
+        request.headers["accept"] = 'application/javascript'
+      end
 
       context 'with valid attributes' do
 
