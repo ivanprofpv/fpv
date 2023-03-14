@@ -24,9 +24,14 @@
           </div>
         <% end %>
         <div class="small float-end pt-4">
-          <td><%= render partial: 'comments/upvote_link', locals: { comment: comment }  %></td>
+          <div class="likes-comment">
+            <td><%= render partial: 'comments/upvote_link', locals: { comment: comment } %></td>
+          </div>
         </div>
         <br><br>
+        <div class="comment-errors-update">
+          <%= render 'shared/errors', resource: @comment %>
+        </div>
         <%= form_with model: [@drone, comment], local: false, class: 'hidden', html: { id: "edit-comment-#{comment.id}" } do |f| %>
           <div class="form-floating">
             <%= f.text_area :body, class: "form-control", placeholder: "Leave a comment here", id: "floatingTextarea" %>

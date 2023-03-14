@@ -5,9 +5,7 @@ feature 'User can delete component in drone-card' do
   given(:other_user) { create(:user) }
   given(:category) { create(:category) }
   given!(:drone) { create(:drone, user: user, category: category) }
-  given!(:component_category) { create(:component_category) }
-  given!(:component) { create(:component, drone_id: drone.id,
-                              component_category_id: component_category.id) }
+  given!(:comment) { create(:comment, drone: drone, user: user) }
 
   describe 'Authenticated user', js: true do
     background do
@@ -15,30 +13,30 @@ feature 'User can delete component in drone-card' do
       visit drone_path(drone)
     end
 
-    scenario 'edit component if author' do
-      within ".components" do
+    scenario 'edit comment if author' do
+      within "#comments" do
 
         click_on 'Edit'
 
-        fill_in(id: 'component_title', with: 'new name component')
+        fill_in(id: 'floatingTextarea', with: 'new name comment')
 
-        click_on 'Update component'
+        click_on 'Update comment'
       end
 
-      expect(page).to have_content('new name component')
+      expect(page).to have_content('new name comment')
     end
 
     scenario 'do not save (errors)' do
-      within "#components" do
+      within "#comments" do
 
         click_on 'Edit'
 
-        fill_in(id: 'component_title', with: '')
+        fill_in(id: 'floatingTextarea', with: '')
 
-        click_on 'Update component'
+        click_on 'Update comment'
       end
 
-      expect(page).to have_content("Title can't be blank")
+      expect(page).to have_content("Body can't be blank")
     end
   end
 
@@ -50,7 +48,7 @@ feature 'User can delete component in drone-card' do
 
     scenario 'not see edit button component if not author' do
 
-      within ".components" do
+      within "#comments" do
         expect(page).to_not have_content 'Edit'
       end
     end
@@ -63,7 +61,7 @@ feature 'User can delete component in drone-card' do
 
     scenario 'can not see edit button' do
 
-      within ".components" do
+      within "#comments" do
         expect(page).to_not have_content 'Edit'
       end
     end

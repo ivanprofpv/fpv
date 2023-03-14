@@ -1,4 +1,6 @@
 <% unless @comment.errors.present? %>
   $('.comment_<%= @comment.id %>').remove();
   $('#comments').html('<%= j render 'comment' %>');
+<% else %>
+  $('.comment-errors-update').html('<%= j render 'shared/errors', resource: @comment %>')
 <% end %>

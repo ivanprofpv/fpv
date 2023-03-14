@@ -1,3 +1,6 @@
+<div class="component-errors-update">
+  <%= render 'shared/errors', resource: @component %>
+</div>
 <%= @drone.components.find_each(order: :asc) do |component| %>
   <%= form_with model: component, local: false, class: 'hidden', html: { id: "edit-component-link-#{component.id}" } do |f| %>
     <div class="row g-3">

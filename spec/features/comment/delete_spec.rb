@@ -15,30 +15,11 @@ feature 'User can delete component in drone-card' do
       visit drone_path(drone)
     end
 
-    scenario 'edit component if author' do
+    scenario 'delete button component if author' do
+
       within ".components" do
-
-        click_on 'Edit'
-
-        fill_in(id: 'component_title', with: 'new name component')
-
-        click_on 'Update component'
+        expect(page).to have_content 'Delete'
       end
-
-      expect(page).to have_content('new name component')
-    end
-
-    scenario 'do not save (errors)' do
-      within "#components" do
-
-        click_on 'Edit'
-
-        fill_in(id: 'component_title', with: '')
-
-        click_on 'Update component'
-      end
-
-      expect(page).to have_content("Title can't be blank")
     end
   end
 
@@ -48,10 +29,10 @@ feature 'User can delete component in drone-card' do
       visit drone_path(drone)
     end
 
-    scenario 'not see edit button component if not author' do
+    scenario 'not see delete button component if not author' do
 
       within ".components" do
-        expect(page).to_not have_content 'Edit'
+        expect(page).to_not have_content 'Delete'
       end
     end
   end
@@ -61,10 +42,10 @@ feature 'User can delete component in drone-card' do
       visit drone_path(drone)
     end
 
-    scenario 'can not see edit button' do
+    scenario 'can not see delete button' do
 
       within ".components" do
-        expect(page).to_not have_content 'Edit'
+        expect(page).to_not have_content 'Delete'
       end
     end
   end
