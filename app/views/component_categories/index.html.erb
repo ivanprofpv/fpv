@@ -1,5 +1,15 @@
-<% @component_category.each do |component_category| %>
-  <%= link_to component_category_path(component_category) do %>
-    <li><%= component_category.title %></li>
+<br>
+<ul class="list-group list-group-flush">
+  <% @component_category.each do |component_category| %>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">
+        <%= link_to component_category_path(component_category) do %>
+          <%= component_category.title %>
+        <% end %>  
+      </div>
+    </div>
+    <span class="badge bg-primary rounded-pill">1</span>
+  </li>
   <% end %>
-<% end %>
+</ul>

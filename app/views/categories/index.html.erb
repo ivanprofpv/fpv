@@ -1,5 +1,15 @@
-<% @categories.each do |category| %>
-  <%= link_to category_path(category) do %>
-    <li><%= category.title %></li>
+<br>
+<ul class="list-group list-group-flush">
+  <% @categories.each do |category| %>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">
+        <%= link_to category_path(category) do %>
+          <%= category.title %>
+        <% end %>
+      </div>
+    </div>
+    <span class="badge bg-primary rounded-pill">1</span>
+  </li>
   <% end %>
-<% end %>
+</ul>

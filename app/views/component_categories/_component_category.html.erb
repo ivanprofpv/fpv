@@ -1,18 +1,17 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-      <div class="post_content">
-        <div class="drone-errors">
-          <%= render 'shared/errors', resource: @component_category %>
-        </div>
-        <hr>
-          <li><%= @component_category.title %></li>
-            <% if user_signed_in? %>
-              <p><%= link_to 'Edit', edit_component_category_path(@component_category), class: 'btn btn-info edit-drone-link' %></p>
-              <p><%= button_to 'Delete', component_category_path(@component_category), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %></p>
-            <% end %>
-        <br>
-        </div>
+<br>
+<div class="drone-errors">
+  <%= render 'shared/errors', resource: @component_category %>
+</div>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">
+        <%= @component_category.title %>
       </div>
     </div>
-  </div>
+      <% if user_signed_in? %>
+        <p><%= link_to 'Edit', edit_component_category_path(@component_category), class: 'btn btn-info btn-sm edit-drone-link' %></p> | 
+        <%= button_to 'Delete', component_category_path(@component_category), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %>
+      <% end %>
+  </li>
+</ul>

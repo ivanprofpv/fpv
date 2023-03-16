@@ -1,26 +1,50 @@
-<div class="col-lg-8 col-md-10 mx-auto">
-  <div class="post_content">
-    <% if user_signed_in? %>
-      <div class="drone-errors">
-        <%= render 'shared/errors', resource: @drone %>
+<div class="post_content">
+  <% if user_signed_in? %>
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-9">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Edit build drone</h2>
+
+                <%= form_with model: @drone, local: true do |f| %>
+                <div class="drone-errors">
+                  <%= render 'shared/errors', resource: @drone %>
+                </div>
+
+                <div class="form-floating mb-5">
+                  <%= f.text_area :title, class: "form-control", placeholder: "Title", id: "floatingTextarea" %>
+                  <label for="floatingTextarea">Title</label>
+                </div>
+
+                <div class="input-group mb-5">
+                  <label class="input-group-text" for="inputGroupFile01">Upload logo</label>
+                  <%= f.file_field :foto, class: "form-control", id: "inputGroupFile01"%>
+                </div>
+
+                <div class="input-group mb-5">
+                  <label class="input-group-text" for="inputGroupFile01">Upload gallery</label>
+                  <%= f.file_field :gallerys, multiple: true, class: "form-control", id: "inputGroupFile01"%>
+                </div>
+
+                <div class="input-group mb-5">
+                  <label class="input-group-text" for="inputGroupSelect01">Select a category</label>
+                  <%= f.collection_select :category_id, Category.all, :id, :title, { prompt: true }, class: "form-select", id: "inputGroupSelect01" %>
+                </div>
+
+                <div class="mb-5">
+                  <%= f.rich_text_area :content, class: "form-control", placeholder: "Description of your drone build", id: "floatingTextarea" %>
+                </div>
+
+                <div class="d-grid gap-2">
+                  <%= f.submit "Update", class: 'btn btn-info btn-lg' %>
+                </div> 
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <div class="drone_characteristics">
-        <%= form_with model: @drone, local: true do |f| %>
-          <p><%= f.label :title %>
-          <p><%= f.text_field :title %>
-          <p><%= f.label :body %>
-          <p><%= f.text_area :body %>
-          <p><%= f.label :foto, "Logo" %>
-          <p><%= f.file_field :foto %>
-          <p><%= f.label :gallerys, "Gallery" %>
-          <p><%= f.file_field :gallerys, multiple: true %>
-          <p><%= f.label :category_id %>
-          <p><%= f.collection_select :category_id, Category.all, :id, :title, { prompt: true } %>
-          <p><%= f.label :content %>
-          <p><%= f.rich_text_area :content %>
-          <p><%= f.submit 'Update' %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
+
+
