@@ -11,7 +11,7 @@ cine = Category.create!(title: "CineWhoop")
 
 Drone.destroy_all
 
-drone = Drone.create!(title: "Test drone", body: "test body", category_id: 1, user_id: 1)
+drone = Drone.create!(title: "Test drone", category_id: 1, user_id: 1)
 
 Component.destroy_all
 

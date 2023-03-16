@@ -6,7 +6,6 @@ RSpec.describe Drone, type: :model do
   let (:votable) { create(:drone, user: voter) }
 
   it { should validate_presence_of :title }
-  it { should validate_presence_of :body }
 
   it 'Authenticated user have many attached foto to dron-card' do
     expect(Drone.new.foto).to be_an_instance_of(ActiveStorage::Attached::One)

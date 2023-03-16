@@ -67,6 +67,6 @@ class DronesController < ApplicationController
   end
 
   def drone_params
-    params.require(:drone).permit(:title, :body, :content, :foto, :category_id, components_attributes: [:title, :url, :price, :component_category_id, :_destroy], gallerys: [])
+    params.require(:drone).permit(:title, :content, :foto, :category_id, components_attributes: [:title, :url, :price, :component_category_id, :_destroy], gallerys: [])
   end
 end

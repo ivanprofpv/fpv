@@ -8,7 +8,6 @@ RSpec.describe DronesController, type: :controller do
         {
            drone: {
             title: "drone",
-            body: "123",
             category_id: category
           }
         }
@@ -119,11 +118,10 @@ RSpec.describe DronesController, type: :controller do
         end
 
         it 'change existing attributes' do
-          patch :update, params: { id: drone, drone: { title: 'New name drone', body: 'New text body' } }
+          patch :update, params: { id: drone, drone: { title: 'New name drone' } }
           drone.reload
 
           expect(drone.title).to eq 'New name drone'
-          expect(drone.body).to eq 'New text body'
         end
 
         it 'redirect to update drone-card' do
@@ -139,7 +137,6 @@ RSpec.describe DronesController, type: :controller do
           drone.reload
 
           expect(drone.title).to eq 'TitleDrone'
-          expect(drone.body).to eq 'BodyDrone'
         end
       end
     end
@@ -147,11 +144,10 @@ RSpec.describe DronesController, type: :controller do
     context 'Unauthenticated user' do
 
       it 'does not update drone' do
-        patch :update, params: { id: drone, drone: { title: 'new title', body: 'new body' } }
+        patch :update, params: { id: drone, drone: { title: 'new title' } }
         drone.reload
 
         expect(drone.title).to eq drone.title
-        expect(drone.body).to eq drone.body
       end
 
       it 'redirect to sign in' do

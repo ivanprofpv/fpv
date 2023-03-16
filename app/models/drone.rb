@@ -15,7 +15,7 @@ class Drone < ApplicationRecord
 
   accepts_nested_attributes_for :components, reject_if: :all_blank, allow_destroy: true
 
-  validates :title, :body, presence: true
+  validates :title, presence: true
   validates :foto, :gallerys, content_type: { in: ['image/png', 'image/jpeg', 'image/jpg'], message: 'must be a JPEG, PNG or JPG' },
                               size: { less_than: 5.megabytes , message: 'image is too large, max size 1 image - 5MB' }
 

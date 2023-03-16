@@ -14,7 +14,6 @@ feature 'User can create drone-card' do
 
     scenario 'create drone-card' do
       fill_in 'Title', with: 'Test name drone'
-      fill_in 'Body', with: 'Test body'
       select ('DroneCategory'), from: 'drone_category_id'
       click_on 'Build'
 
@@ -24,7 +23,6 @@ feature 'User can create drone-card' do
 
     scenario 'can not create drone-card (error title and category)', js: true do
       fill_in 'Title', with: ''
-      fill_in 'Body', with: 'Test body'
       click_on 'Build'
 
       expect(page).to have_content "Title can't be blank"
