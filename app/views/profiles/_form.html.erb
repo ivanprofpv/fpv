@@ -1,0 +1,40 @@
+<div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-9">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Edit profile</h2>
+                
+              <%= form_with(model: profile, local: true) do |f| %>
+                <div class="drone-errors">
+                  <%= render 'shared/errors', resource: profile %>
+                </div>
+
+                <div class="form-floating mb-5">
+                  <%= f.text_area :name, class: "form-control", placeholder: "Name", id: "floatingTextarea" %>
+                  <label for="floatingTextarea">Name</label>
+                </div>
+
+                <div class="form-floating mb-5">
+                  <%= f.text_area :about, class: "form-control", placeholder: "About me", id: "floatingTextarea" %>
+                  <label for="floatingTextarea">About me</label>
+                </div>
+
+                <div class="form-floating mb-5">
+                  <%= f.text_area :city, class: "form-control", placeholder: "City", id: "floatingTextarea" %>
+                  <label for="floatingTextarea">City</label>
+                </div>
+
+                <div class="input-group mb-5">
+                  <label class="input-group-text" for="inputGroupFile01">Upload avatar</label>
+                  <%= f.file_field :avatar, class: "form-control", id: "inputGroupFile01"%>
+                </div>
+
+                <div class="d-grid gap-2">
+                  <%= f.submit "Update", class: 'btn btn-info btn-lg' %>
+                </div> 
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>

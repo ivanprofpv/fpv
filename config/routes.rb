@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'profiles/show'
+  get 'profiles/edit'
+  get 'profiles/update'
   devise_for :users, path_names: { sign_in: :login, sign_out: :logout }
+  resource :profile, only: %i[ show edit update ]
 
   resources :drones do
     member do
