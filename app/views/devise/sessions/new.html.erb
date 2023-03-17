@@ -10,8 +10,8 @@
             <%= render "devise/shared/error_messages", resource: resource %>
 
             <div class="form-outline mb-4">
-              <%= f.email_field :email, class: "form-control form-control-lg", id: "form3Example3cg", autofocus: true, autocomplete: "email" %>
-              <label class="form-label" for="form3Example3cg">Your Email</label>
+              <%= f.text_field :login, class: "form-control form-control-lg", id: "form3Example3cg", autofocus: true, autocomplete: "email or username" %>
+              <label class="form-label" for="form3Example3cg">Your Email or Username</label>
             </div>
 
             <div class="form-outline mb-4">

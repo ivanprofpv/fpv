@@ -1,7 +1,7 @@
 <h1>Profile</h1>
 
 <%= image_tag @profile.avatar if @profile.avatar.present? %>
-
+<p><strong>Username:</strong> <%= current_user.username %></p>
 <p><strong>name:</strong> <%= @profile.name %></p>
 <p><strong>about:</strong> <%= @profile.about %></p>
 <p><strong>city:</strong> <%= @profile.city %></p>
