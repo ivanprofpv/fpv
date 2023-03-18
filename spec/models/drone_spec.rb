@@ -1,11 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Drone, type: :model do
+  let(:user) { create(:user) }
   let(:voter) { create(:user) }
   let(:voter2) { create(:user) }
   let (:votable) { create(:drone, user: voter) }
 
   it { should validate_presence_of :title }
+
+  it "validates title length" do
+    FactoryBot.build(:drone, user: user, title: "12345678901234567890
+                                                 12345678901234567890
+                                                 123456789012345678901",
+                    ).should_not be_valid
+    FactoryBot.build(:drone, user: user, title: "12345678").should be_valid
+  end
 
   it 'Authenticated user have many attached foto to dron-card' do
     expect(Drone.new.foto).to be_an_instance_of(ActiveStorage::Attached::One)
