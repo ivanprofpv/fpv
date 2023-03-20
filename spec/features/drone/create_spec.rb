@@ -14,7 +14,7 @@ feature 'User can create drone-card' do
 
     scenario 'create drone-card' do
       fill_in 'Title', with: 'Test name drone'
-      select ('DroneCategory'), from: 'drone_category_id'
+      select ('DroneCategory'), from: 'inputGroupSelect01'
       click_on 'Build'
 
       expect(page).to have_content 'Drone created successfully.'

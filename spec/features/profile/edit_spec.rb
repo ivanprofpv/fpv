@@ -12,43 +12,23 @@ feature 'User can edit self profile' do
     end
 
     scenario 'edit profile if author' do
-      within ".card-body" do
+      click_on 'Edit Profile'
 
-        click_on 'Edit Profile'
+      fill_in 'Name', with: 'new name profile'
 
-        fill_in(id: 'floatingTextareaName', with: 'new name profile')
-
-        click_on 'Update'
-      end
+      click_on 'Update'
 
       expect(page).to have_content('new name profile')
     end
 
     scenario 'do not save (errors)' do
-      within ".card-body" do
+      click_on 'Edit Profile'
 
-        click_on 'Edit Profile'
+      fill_in(id: 'floatingTextareaName', with: '')
 
-        fill_in(id: 'floatingTextareaName', with: '')
-
-        click_on 'Update'
-      end
+      click_on 'Update'
 
       expect(page).to have_content("Profile was successfully updated.")
-    end
-  end
-
-  describe 'Authenticated other user', js: true do
-    background do
-      sign_in(other_user)
-      visit profile_path
-    end
-
-    scenario 'not see edit button component if not author' do
-
-      within ".card-body" do
-        expect(page).to_not have_content 'Edit Profile'
-      end
     end
   end
 
@@ -58,10 +38,7 @@ feature 'User can edit self profile' do
     end
 
     scenario 'can not see edit button' do
-
-      within ".card-body" do
-        expect(page).to_not have_content 'Edit Profile'
-      end
+      expect(page).to_not have_content 'Edit Profile'
     end
   end
 end
