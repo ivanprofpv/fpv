@@ -1,5 +1,4 @@
 class Drone < ApplicationRecord
-
   belongs_to :user
   belongs_to :category
 
@@ -16,9 +15,8 @@ class Drone < ApplicationRecord
   accepts_nested_attributes_for :components, reject_if: :all_blank, allow_destroy: true
 
   validates :title, presence: true
-  validates_length_of :title, maximum: 50, message: "Shorten the title to 50 characters"
+  validates_length_of :title, maximum: 50, message: 'Shorten the title to 50 characters'
 
   validates :foto, :gallerys, content_type: { in: ['image/png', 'image/jpeg', 'image/jpg'], message: 'must be a JPEG, PNG or JPG' },
-                              size: { less_than: 5.megabytes , message: 'image is too large, max size 1 image - 5MB' }
-
+                              size: { less_than: 5.megabytes, message: 'image is too large, max size 1 image - 5MB' }
 end

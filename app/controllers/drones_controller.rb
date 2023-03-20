@@ -1,6 +1,6 @@
 class DronesController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy edit new]
-  before_action :load_drone, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :load_drone, only: %i[show edit update destroy upvote]
 
   def index
     @drones = Drone.all.order(created_at: :desc)
@@ -12,7 +12,7 @@ class DronesController < ApplicationController
     else
       @drone.upvote_by current_user
     end
-    render "vote.js.erb"
+    render 'vote.js.erb'
   end
 
   def show
@@ -32,18 +32,17 @@ class DronesController < ApplicationController
 
     @drone.user = current_user
 
-    if @drone.save
-      flash[:good] = "Drone created successfully."
-      redirect_to @drone
-    end
+    return unless @drone.save
+
+    flash[:good] = 'Drone created successfully.'
+    redirect_to @drone
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @drone.update(drone_params)
-      flash[:good] = "Drone updated successfully."
+      flash[:good] = 'Drone updated successfully.'
       redirect_to @drone
     else
       render :edit
@@ -52,7 +51,7 @@ class DronesController < ApplicationController
 
   def destroy
     @drone.destroy
-    flash[:good] = "Drone deleted successfully."
+    flash[:good] = 'Drone deleted successfully.'
     redirect_to root_path
   end
 
@@ -67,6 +66,7 @@ class DronesController < ApplicationController
   end
 
   def drone_params
-    params.require(:drone).permit(:title, :content, :foto, :category_id, components_attributes: [:title, :url, :price, :component_category_id, :_destroy], gallerys: [])
+    params.require(:drone).permit(:title, :content, :foto, :category_id,
+                                  components_attributes: %i[title url price component_category_id _destroy], gallerys: [])
   end
 end

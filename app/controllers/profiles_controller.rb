@@ -1,12 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profile, only: %i[ show edit update ]
+  before_action :set_profile, only: %i[show edit update]
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @profile.update(profile_params)
@@ -15,6 +13,7 @@ class ProfilesController < ApplicationController
       render :edit
     end
   end
+
   private
 
   def set_profile

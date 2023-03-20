@@ -6,7 +6,7 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
-                <% if @profile.avatar.attached? %>
+                <% if @profile.avatar.persisted? %>
                   <img src="<%= url_for(@profile.avatar) %>" alt="<%= current_user.username %>" class="rounded-circle" width="150">
                 <% else %>
                   <img src="/avatar_default.png" alt="<%= current_user.username %>" class="rounded-circle" width="150">

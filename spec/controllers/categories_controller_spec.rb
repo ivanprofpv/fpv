@@ -5,7 +5,6 @@ RSpec.describe CategoriesController, type: :controller do
   let(:category) { create(:category) }
 
   describe 'GET #index' do
-
     let(:categories) { create_list(:category, 3) }
 
     before { get :index }
@@ -20,7 +19,6 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'GET #show' do
-
     before { get :show, params: { id: category } }
 
     it 'check if variable in controller matches' do
@@ -33,7 +31,6 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'GET #new' do
-
     before { get :new }
 
     it 'check if the data is set to a variable @category' do
@@ -46,39 +43,39 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'POST #create' do
-
     context 'Authenticated user' do
-
       before { login(user) }
 
       context 'with valid attributes' do
-
         it 'saves new category in database' do
-          expect { post :create, params: { category: attributes_for(:category) } }.to change(Category, :count).by(1)
+          expect do
+            post :create, params: { category: attributes_for(:category) }
+          end.to change(Category, :count).by(1)
         end
       end
 
       context 'with invalid attributes' do
-
         it 'does not saves new category-card in database' do
-          expect { post :create, params: { category: attributes_for(:category, :invalid) } }.to_not change(Category, :count)
+          expect do
+            post :create,
+                 params: { category: attributes_for(:category, :invalid) }
+          end.to_not change(Category, :count)
         end
       end
     end
 
     context 'Unauthenticated user' do
-
       context 'with valid attributes' do
-
         it 'saves new category in database' do
-          expect { post :create, params: { category: attributes_for(:category) } }.to change(Category, :count).by(0)
+          expect do
+            post :create, params: { category: attributes_for(:category) }
+          end.to change(Category, :count).by(0)
         end
       end
     end
   end
 
   describe 'GET #edit' do
-
     before { login(user) }
     before { get :edit, params: { id: category } }
 
@@ -88,9 +85,7 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'PATCH #update' do
-
     context 'Authenticated user' do
-
       before { login(user) }
 
       context 'with valid attributes' do
@@ -113,7 +108,6 @@ RSpec.describe CategoriesController, type: :controller do
       end
 
       context 'with invalid attributes' do
-
         it 'does not update category' do
           patch :update, params: { id: category, category: attributes_for(:category, :invalid) }
           category.reload
@@ -140,9 +134,7 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-
     context 'Authenticated user' do
-
       before { login(user) }
 
       let!(:category) { create(:category) }
@@ -158,8 +150,6 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     context 'Unauthenticated user' do
-
-
       let!(:category) { create(:category) }
 
       it 'delete category' do

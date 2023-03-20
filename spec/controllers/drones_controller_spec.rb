@@ -3,19 +3,18 @@ require 'rails_helper'
 RSpec.describe DronesController, type: :controller do
   let(:user) { create(:user) }
   let(:category) { create(:category) }
-  let(:drone) { create(:drone, user: user, category: category) }
+  let(:drone) { create(:drone, user:, category:) }
   let(:valid_params) do
-        {
-           drone: {
-            title: "drone",
-            category_id: category
-          }
-        }
-      end
+    {
+      drone: {
+        title: 'drone',
+        category_id: category
+      }
+    }
+  end
 
   describe 'GET #index' do
-
-    let(:drones) { create_list(:drone, 3, category: category, user: user) }
+    let(:drones) { create_list(:drone, 3, category:, user:) }
 
     before { get :index }
 
@@ -29,7 +28,6 @@ RSpec.describe DronesController, type: :controller do
   end
 
   describe 'GET #show' do
-
     before { get :show, params: { id: drone } }
 
     it 'check if variable in controller matches' do
@@ -42,34 +40,31 @@ RSpec.describe DronesController, type: :controller do
   end
 
   describe 'POST #create' do
-
     context 'Authenticated user' do
-
       before :each do
         login(user)
-        request.headers["accept"] = 'application/javascript'
+        request.headers['accept'] = 'application/javascript'
       end
 
       context 'with valid attributes' do
-
         it 'saves a new drone in the database' do
           expect { post :create, params: valid_params }.to change(Drone, :count).by(1)
         end
       end
 
       context 'with invalid attributes' do
-
         it 'does not saves new drone-card in database' do
-          expect { post :create, params: { drone: attributes_for(:drone, :invalid) } }.to_not change(Drone, :count)
+          expect do
+            post :create, params: { drone: attributes_for(:drone, :invalid) }
+          end.to_not change(Drone, :count)
         end
       end
     end
 
     context 'Unauthenticated user' do
-
       it 'does not save a new drone in the database' do
         expect { post :create, params: { drone: attributes_for(:drone) } }
-                .to_not change(Drone, :count)
+          .to_not change(Drone, :count)
       end
 
       it 'redirect to sign in' do
@@ -80,11 +75,9 @@ RSpec.describe DronesController, type: :controller do
   end
 
   describe 'GET #edit' do
-
     context 'Authenticated user' do
-
       before { login(user) }
-      before { get :edit, params: { id: drone, user: user } }
+      before { get :edit, params: { id: drone, user: } }
 
       it 'check if the data is set to a variable @drone' do
         expect(assigns(:drone)).to eq drone
@@ -92,8 +85,7 @@ RSpec.describe DronesController, type: :controller do
     end
 
     context 'Unauthenticated user' do
-
-      before { get :edit, params: { id: drone, user: user } }
+      before { get :edit, params: { id: drone, user: } }
 
       it 'the drone does not change' do
         expect(assigns(:drone)).to_not eq drone
@@ -106,9 +98,7 @@ RSpec.describe DronesController, type: :controller do
   end
 
   describe 'PATCH #update' do
-
     context 'Authenticated user' do
-
       before { login(user) }
 
       context 'with valid attributes' do
@@ -131,7 +121,6 @@ RSpec.describe DronesController, type: :controller do
       end
 
       context 'with invalid attributes' do
-
         it 'does not update drone-card' do
           patch :update, params: { id: drone, drone: attributes_for(:drone, :invalid) }
           drone.reload
@@ -142,7 +131,6 @@ RSpec.describe DronesController, type: :controller do
     end
 
     context 'Unauthenticated user' do
-
       it 'does not update drone' do
         patch :update, params: { id: drone, drone: { title: 'new title' } }
         drone.reload
@@ -159,12 +147,10 @@ RSpec.describe DronesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-
     context 'Authenticated user' do
-
       before { login(user) }
 
-      let!(:drone) { create(:drone, category: category, user: user) }
+      let!(:drone) { create(:drone, category:, user:) }
 
       it 'delete drone-card' do
         expect { delete :destroy, params: { id: drone } }.to change(Drone, :count).by(-1)
@@ -177,8 +163,7 @@ RSpec.describe DronesController, type: :controller do
     end
 
     context 'Unauthenticated user' do
-
-      let!(:drone) { create(:drone, category: category, user: user) }
+      let!(:drone) { create(:drone, category:, user:) }
 
       it 'the question has not been deleted' do
         expect { delete :destroy, params: { id: drone } }.to_not change(Drone, :count)

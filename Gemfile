@@ -13,13 +13,13 @@ gem "pg", '>= 0.18', '< 2.0'
 gem "puma", "~> 5.0"
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+gem "sass-rails", ">= 6"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.0'
+gem "webpacker", "~> 5.0"
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem "turbolinks", "~> 5"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
@@ -46,18 +46,19 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "devise", "~> 4.8.1"
-gem 'bootstrap', '~> 5.2.2'
-gem 'jquery-rails'
+gem "bootstrap", "~> 5.2.2"
+gem "jquery-rails"
 gem "ruby-vips"
-gem 'image_processing', '~> 1.2'
-gem 'active_storage_validations'
+gem "image_processing", "~> 1.2"
+gem "active_storage_validations"
 gem "font-awesome-sass", "~> 6.3.0"
-gem 'acts_as_votable'
+gem "acts_as_votable"
 
 group :development, :test do
   gem "rspec-rails", "~> 4.1.0"
   gem "factory_bot_rails"
   gem "byebug"
+  gem "rubocop", "~> 1.48", require: false
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end

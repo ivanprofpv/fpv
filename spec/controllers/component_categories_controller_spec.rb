@@ -11,7 +11,7 @@ RSpec.describe ComponentCategoriesController, type: :controller do
         it 'save component categories' do
           expect do
             post :create, params: { component_category: attributes_for(:component_category) },
-                                    format: :js
+                          format: :js
           end.to change(ComponentCategory, :count).by(1)
         end
       end
@@ -22,7 +22,7 @@ RSpec.describe ComponentCategoriesController, type: :controller do
         it 'do not save component categories' do
           expect do
             post :create, params: { component_category: attributes_for(:component_category, :invalid) },
-                                    format: :js
+                          format: :js
           end.not_to change(ComponentCategory, :count)
         end
       end
@@ -32,22 +32,21 @@ RSpec.describe ComponentCategoriesController, type: :controller do
       it 'does not save component categories' do
         expect do
           post :create, params: { component_category: attributes_for(:component_category) },
-                                  format: :js
-
+                        format: :js
         end.not_to change(ComponentCategory, :count)
       end
     end
   end
 
   describe 'PATCH #update' do
-
     let!(:component_category) { create(:component_category) }
 
     context 'authenticated user' do
       before { login(user) }
       context 'with valid attributes' do
         it 'changes component categories' do
-          patch :update, params: { id: component_category, component_category: { title: 'new body' } }, format: :js
+          patch :update,
+                params: { id: component_category, component_category: { title: 'new body' } }, format: :js
           component_category.reload
           expect(component_category.title).to eq 'new body'
         end
@@ -56,7 +55,8 @@ RSpec.describe ComponentCategoriesController, type: :controller do
       context 'with invalid attributes' do
         it 'does not changes component categories attributes' do
           expect do
-            patch :update, params: { id: component_category, component_category: attributes_for(:component_category, :invalid) }, format: :js
+            patch :update,
+                  params: { id: component_category, component_category: attributes_for(:component_category, :invalid) }, format: :js
           end.to_not change(component_category, :title)
         end
       end
@@ -66,12 +66,13 @@ RSpec.describe ComponentCategoriesController, type: :controller do
       context 'with valid attributes' do
         it 'does not change attributes' do
           expect do
-            patch :update, params: { id: component_category, component_category: component_category }, format: :js
+            patch :update,
+                  params: { id: component_category, component_category: }, format: :js
           end.to_not change(component_category, :title)
         end
 
         it 'redirect to sign in page' do
-          patch :update, params: { id: component_category, component_category: component_category }
+          patch :update, params: { id: component_category, component_category: }
           expect(response).to redirect_to new_user_session_path
         end
       end
@@ -79,12 +80,15 @@ RSpec.describe ComponentCategoriesController, type: :controller do
       context 'with invalid attributes' do
         it 'does not change attributes' do
           expect do
-            patch :update, params: { id: component_category, component_category: attributes_for(:component_category, :invalid) }, format: :js
+            patch :update,
+                  params: { id: component_category, component_category: attributes_for(:component_category, :invalid) }, format: :js
           end.to_not change(component_category, :title)
         end
 
         it 'redirect to sign in page' do
-          patch :update, params: { id: component_category, component_category: attributes_for(:component_category, :invalid) }
+          patch :update,
+                params: { id: component_category,
+                          component_category: attributes_for(:component_category, :invalid) }
           expect(response).to redirect_to new_user_session_path
         end
       end
@@ -99,7 +103,10 @@ RSpec.describe ComponentCategoriesController, type: :controller do
         let!(:component_category) { create(:component_category) }
 
         it 'delete the component categoris' do
-          expect { delete :destroy, params: { id: component_category }, format: :js }.to change(ComponentCategory, :count).by(-1)
+          expect do
+            delete :destroy, params: { id: component_category },
+                             format: :js
+          end.to change(ComponentCategory, :count).by(-1)
         end
       end
     end
@@ -108,7 +115,10 @@ RSpec.describe ComponentCategoriesController, type: :controller do
       let!(:component_category) { create(:component_category) }
 
       it 'unsuccessful attempt to delete component categories' do
-        expect { delete :destroy, params: { id: component_category }, format: :js }.to_not change(ComponentCategory, :count)
+        expect do
+          delete :destroy, params: { id: component_category },
+                           format: :js
+        end.to_not change(ComponentCategory, :count)
       end
 
       it 'redirect to sign in' do

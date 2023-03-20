@@ -4,7 +4,7 @@ RSpec.describe CommentsController, type: :controller do
   let(:user) { create(:user) }
   let(:other_user) { create(:user) }
   let(:category) { create(:category) }
-  let(:drone) { create(:drone, user: user, category: category) }
+  let(:drone) { create(:drone, user:, category:) }
 
   describe 'POST #create' do
     context 'Authenticated user can add comment' do
@@ -15,14 +15,14 @@ RSpec.describe CommentsController, type: :controller do
           expect do
             post :create, params: { drone_id: drone, user_id: user,
                                     comment: attributes_for(:comment) },
-                                    format: :js
+                          format: :js
           end.to change(Comment, :count).by(1)
         end
 
         it 'render create' do
           post :create, params: { drone_id: drone, user_id: user,
                                   comment: attributes_for(:comment) },
-                                  format: :js
+                        format: :js
 
           expect(response).to render_template :create
         end
@@ -35,14 +35,14 @@ RSpec.describe CommentsController, type: :controller do
           expect do
             post :create, params: { drone_id: drone, user_id: user,
                                     comment: attributes_for(:comment, :invalid) },
-                                    format: :js
+                          format: :js
           end.not_to change(Comment, :count)
         end
 
         it 'render create' do
           post :create, params: { drone_id: drone, user_id: user,
                                   comment: attributes_for(:comment, :invalid) },
-                                  format: :js
+                        format: :js
 
           expect(response).to render_template :create
         end
@@ -54,15 +54,13 @@ RSpec.describe CommentsController, type: :controller do
         expect do
           post :create, params: { drone_id: drone, user_id: user,
                                   comment: attributes_for(:comment) },
-                                  format: :js
-
+                        format: :js
         end.not_to change(Comment, :count)
       end
     end
   end
 
   describe 'PATCH #update' do
-
     let(:comment) { create(:comment, drone_id: drone.id, user_id: user.id) }
 
     context 'authenticated user' do
@@ -104,12 +102,14 @@ RSpec.describe CommentsController, type: :controller do
       context 'with invalid attributes' do
         it 'does not changes comment attributes' do
           expect do
-            patch :update, params: { id: comment, comment: attributes_for(:comment, :invalid) }, format: :js
+            patch :update, params: { id: comment, comment: attributes_for(:comment, :invalid) },
+                           format: :js
           end.to_not change(comment, :body)
         end
 
         it 'renders update view' do
-          patch :update, params: { id: comment, comment: attributes_for(:comment, :invalid) }, format: :js
+          patch :update, params: { id: comment, comment: attributes_for(:comment, :invalid) },
+                         format: :js
           expect(response).to render_template :update
         end
       end
@@ -119,12 +119,12 @@ RSpec.describe CommentsController, type: :controller do
       context 'with valid attributes' do
         it 'does not change attributes' do
           expect do
-            patch :update, params: { id: comment, comment: comment }, format: :js
+            patch :update, params: { id: comment, comment: }, format: :js
           end.to_not change(comment, :body)
         end
 
         it 'redirect to sign in page' do
-          patch :update, params: { id: comment, comment: comment }
+          patch :update, params: { id: comment, comment: }
           expect(response).to redirect_to new_user_session_path
         end
       end
@@ -132,7 +132,8 @@ RSpec.describe CommentsController, type: :controller do
       context 'with invalid attributes' do
         it 'does not change attributes' do
           expect do
-            patch :update, params: { id: comment, comment: attributes_for(:comment, :invalid) }, format: :js
+            patch :update, params: { id: comment, comment: attributes_for(:comment, :invalid) },
+                           format: :js
           end.to_not change(comment, :body)
         end
 
@@ -152,7 +153,9 @@ RSpec.describe CommentsController, type: :controller do
         let!(:comment) { create(:comment, drone_id: drone.id, user_id: user.id) }
 
         it 'delete the comment' do
-          expect { delete :destroy, params: { id: comment }, format: :js }.to change(Comment, :count).by(-1)
+          expect do
+            delete :destroy, params: { id: comment }, format: :js
+          end.to change(Comment, :count).by(-1)
         end
       end
 
@@ -160,7 +163,9 @@ RSpec.describe CommentsController, type: :controller do
         let(:comment) { create(:comment, drone_id: drone.id, user_id: other_user.id) }
 
         it 'unsuccessful attempt to delete someone another comment' do
-          expect { delete :destroy, params: { id: comment }, format: :js }.to_not change(Comment, :count)
+          expect do
+            delete :destroy, params: { id: comment }, format: :js
+          end.to_not change(Comment, :count)
         end
       end
     end
@@ -169,7 +174,9 @@ RSpec.describe CommentsController, type: :controller do
       let!(:comment) { create(:comment, drone_id: drone.id, user_id: user.id) }
 
       it 'unsuccessful attempt to delete someone another comment' do
-        expect { delete :destroy, params: { id: comment }, format: :js }.to_not change(Comment, :count)
+        expect do
+          delete :destroy, params: { id: comment }, format: :js
+        end.to_not change(Comment, :count)
       end
 
       it 'redirect to sign in' do

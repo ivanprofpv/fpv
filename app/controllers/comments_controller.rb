@@ -1,10 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: %i[ create update destroy edit ]
-  before_action :find_drone, only: %i[ create ]
-  before_action :find_comment, only: %i[ update edit destroy upvote ]
+  before_action :authenticate_user!, only: %i[create update destroy edit]
+  before_action :find_drone, only: %i[create]
+  before_action :find_comment, only: %i[update edit destroy upvote]
 
-  def index
-  end
+  def index; end
 
   def upvote
     if current_user.voted_up_on? @comment
@@ -34,8 +33,7 @@ class CommentsController < ApplicationController
     @comment.destroy
   end
 
-  def edit
-  end
+  def edit; end
 
   private
 
@@ -50,5 +48,4 @@ class CommentsController < ApplicationController
   def find_comment
     @comment = Comment.find(params[:id])
   end
-
 end

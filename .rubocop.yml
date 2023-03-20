@@ -1,0 +1,11 @@
+AllCops:
+    NewCops: enable
+    
+Style/Encoding:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 99

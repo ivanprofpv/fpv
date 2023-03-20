@@ -1,13 +1,12 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy edit]
-  before_action :load_category, only: [:show, :update, :destroy, :edit]
+  before_action :load_category, only: %i[show update destroy edit]
 
   def index
     @categories = Category.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @category = Category.new
@@ -17,19 +16,18 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      flash[:good] = "Category created successfully."
+      flash[:good] = 'Category created successfully.'
       redirect_to root_path
     else
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @category.update(category_params)
-      flash[:good] = "Category updated successfully."
+      flash[:good] = 'Category updated successfully.'
       redirect_to @category
     else
       render :edit
@@ -38,7 +36,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    flash[:good] = "Category deleted successfully."
+    flash[:good] = 'Category deleted successfully.'
     redirect_to root_path
   end
 

@@ -1,13 +1,12 @@
 class ComponentCategoriesController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy edit]
-  before_action :load_component_category, only: [:show, :update, :destroy, :edit]
+  before_action :load_component_category, only: %i[show update destroy edit]
 
   def index
     @component_category = ComponentCategory.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @component_category = ComponentCategory.new
@@ -17,19 +16,18 @@ class ComponentCategoriesController < ApplicationController
     @component_category = ComponentCategory.new(component_category_params)
 
     if @component_category.save
-      flash[:good] = "Category component created successfully."
+      flash[:good] = 'Category component created successfully.'
       redirect_to new_component_category_path
     else
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @component_category.update(component_category_params)
-      flash[:good] = "Category component updated successfully."
+      flash[:good] = 'Category component updated successfully.'
       redirect_to @component_category
     else
       render :edit
@@ -38,7 +36,7 @@ class ComponentCategoriesController < ApplicationController
 
   def destroy
     @component_category.destroy
-    flash[:good] = "Category component deleted successfully."
+    flash[:good] = 'Category component deleted successfully.'
     redirect_to root_path
   end
 

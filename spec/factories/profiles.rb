@@ -4,7 +4,6 @@ FactoryBot.define do
     name { "name" }
     about { "about" }
     city { "city" }
-    avatar { nil }
 
     trait :invalid do
       name { "12345678901234567890
