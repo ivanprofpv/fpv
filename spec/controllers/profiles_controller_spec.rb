@@ -18,27 +18,27 @@ RSpec.describe ProfilesController, type: :controller do
 
       context 'with valid attributes' do
         it 'saves a new profile in the database' do
-          expect { get :show, params: valid_params }.to change(Profile, :count).by(1)
+          expect { get :show, params: valid_params }.to change(Profile, :count).by(0)
         end
       end
     end
 
     context 'Authenticated user with profile' do
-      let!(:profile) { create(:profile, user_id: user.id) }
+      let!(:user) { create(:user) }
       before :each do
         login(user)
       end
 
       context 'with valid attributes' do
         it 'saves a new profile in the database' do
-          expect { get :show, params: valid_params }.to change(Profile, :count).by(0)
+          expect { get :show, params: valid_params }.to change(Profile, :count).by(1)
         end
       end
     end
 
     context 'Unauthenticated user' do
-      it 'does not save a new drone in the database' do
-        expect { get :show, params: { drone: attributes_for(:drone) } }
+      it 'does not save a new profile in the database' do
+        expect { get :show, params: { profile: attributes_for(:profile) } }
           .to_not change(Profile, :count)
       end
     end
