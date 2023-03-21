@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'profiles/show'
-  get 'profiles/edit'
-  get 'profiles/update'
-  devise_for :users, path_names: { sign_in: :login, sign_out: :logout }
-  resource :profile, only: %i[ show edit update ]
+  devise_for :users, controllers: { registrations: 'users/registrations' }, path_names: { sign_in: :login, sign_out: :logout }
+  resource :profile, only: %i[ edit update show ]
 
   resources :drones do
     member do
@@ -24,5 +21,6 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  get 'profile/:id', to: 'profiles#show_other_profile'
   root to: 'drones#index'
 end

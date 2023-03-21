@@ -10,6 +10,6 @@ class Profile < ApplicationRecord
   validates_length_of :city, maximum: 50, message: 'Shorten the city to 50 characters',
                              allow_blank: true
 
-  validates :avatar, content_type: { in: ['image/png', 'image/jpeg', 'image/jpg'], message: 'must be a JPEG, PNG or JPG' },
+  validates :avatar, content_type: { in: ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'], message: 'must be a JPEG, PNG or JPG' },
                      size: { less_than: 3.megabytes, message: 'image is too large, max size 1 image - 3MB' }
 end
