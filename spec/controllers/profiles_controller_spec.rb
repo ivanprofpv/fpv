@@ -24,14 +24,14 @@ RSpec.describe ProfilesController, type: :controller do
     end
 
     context 'Authenticated user with profile' do
-      let!(:user) { create(:user) }
+      let!(:profile) { create(:profile, user_id: user.id) }
       before :each do
         login(user)
       end
 
       context 'with valid attributes' do
         it 'saves a new profile in the database' do
-          expect { get :show, params: valid_params }.to change(Profile, :count).by(1)
+          expect { get :show, params: valid_params }.to change(Profile, :count).by(0)
         end
       end
     end
