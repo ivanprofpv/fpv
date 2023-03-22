@@ -7,6 +7,66 @@ RSpec.describe ComponentsController, type: :controller do
   let(:component_category) { create(:component_category) }
   let(:drone) { create(:drone, user:, category:) }
   let(:drone_other_user) { create(:drone, user: other_user, category:) }
+  let(:valid_params) do
+    {
+        title: "drone",
+        url: "https://ya.ru",
+        price: 10,
+        component_category_id: component_category.id
+    }
+  end
+  let(:invalid_params) do
+    {
+        title: "drone",
+        url: "https://yaru",
+        price: 10
+    }
+  end
+
+  describe 'POST #create' do
+    context 'Authenticated user' do
+      before :each do
+        login(user)
+      end
+
+      context 'with valid attributes' do
+        it 'save component in database' do
+          expect do
+            post :create, params: { drone_id: drone,
+                                    component: valid_params },
+                                    format: :js
+          end.to change(Component, :count).by(1)
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not saves new component in database' do
+          expect do
+            post :create, params: { drone_id: drone,
+                                    component: invalid_params },
+                                    format: :js
+          end.to_not change(Component, :count)
+        end
+      end
+    end
+
+    context 'Unauthenticated user' do
+      it 'does not save a new component in the database' do
+        expect do
+          post :create, params: { drone_id: drone,
+                                  component: valid_params },
+                                  format: :js
+        end.to_not change(Component, :count)
+      end
+
+      it 'redirect to sign in' do
+        post :create, params: { drone_id: drone,
+                                component: valid_params },
+                                format: :js
+        expect(response).to have_http_status(401)
+      end
+    end
+  end
 
   describe 'PATCH #update' do
     let!(:component) do

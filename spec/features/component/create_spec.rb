@@ -24,11 +24,24 @@ feature 'User can add component for drone-card' do
         fill_in(id: 'component_price', with: 10)
 
         click_on 'Create component'
+
+        click_on 'Add component'
+
+        select "title_category_component", :from => "component[component_category_id]"
+        fill_in(id: 'component_title', with: 'name2 component2')
+        fill_in(id: 'component_url', with: 'https://ya.ru')
+        fill_in(id: 'component_price', with: 20)
+
+        click_on 'Create component'
       end
 
       expect(page).to have_content('name component')
       expect(page).to have_content('click here')
       expect(page).to have_content(10)
+      expect(page).to have_content('name2 component2')
+      expect(page).to have_content('click here')
+      expect(page).to have_content(20)
+      expect(page).to have_content(30)
     end
 
     scenario 'add component with error' do

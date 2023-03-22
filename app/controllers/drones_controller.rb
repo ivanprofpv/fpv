@@ -32,10 +32,10 @@ class DronesController < ApplicationController
 
     @drone.user = current_user
 
-    return unless @drone.save
-
-    flash[:good] = 'Drone created successfully.'
-    redirect_to @drone
+    if @drone.save
+      flash[:good] = 'Drone created successfully.'
+      redirect_to @drone
+    end
   end
 
   def edit; end

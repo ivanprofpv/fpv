@@ -4,11 +4,12 @@ feature 'User can sees your profile' do
   given(:user) { create(:user) }
   given(:other_user) { create(:user) }
   given(:profile) { create(:profile, user_id: user.id) }
+  given(:other_profile) { create(:profile, user_id: other_user.id) }
 
   describe 'Authenticated user', js: true do
     background do
       sign_in(user)
-      visit profile_path
+      visit profile_path(profile)
     end
 
     scenario 'sees your profile if author' do
@@ -20,7 +21,8 @@ feature 'User can sees your profile' do
 
   describe 'Unauthenticated user', js: true do
     background do
-      visit profile_path
+      sign_in(user)
+      visit profile_path(other_profile)
     end
 
     scenario 'can not see edit button' do
