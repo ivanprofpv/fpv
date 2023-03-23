@@ -13,6 +13,7 @@ class ComponentCategoriesController < ApplicationController
   end
 
   def create
+    authorize ComponentCategory
     @component_category = ComponentCategory.new(component_category_params)
 
     if @component_category.save
@@ -26,6 +27,7 @@ class ComponentCategoriesController < ApplicationController
   def edit; end
 
   def update
+    authorize @component_category
     if @component_category.update(component_category_params)
       flash[:good] = 'Category component updated successfully.'
       redirect_to @component_category
@@ -35,6 +37,7 @@ class ComponentCategoriesController < ApplicationController
   end
 
   def destroy
+    authorize @component_category
     @component_category.destroy
     flash[:good] = 'Category component deleted successfully.'
     redirect_to root_path
