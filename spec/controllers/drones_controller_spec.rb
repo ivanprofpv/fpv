@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe DronesController, type: :controller do
   let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
+  let(:user_admin) { create(:user, admin: 'true') }
   let(:category) { create(:category) }
   let(:drone) { create(:drone, user:, category:) }
   let(:valid_params) do
@@ -130,6 +132,56 @@ RSpec.describe DronesController, type: :controller do
       end
     end
 
+    context 'Authenticated admin user' do
+      before { login(user_admin) }
+
+      context 'with valid attributes' do
+        it 'check if the data is set to a variable @drone in controller' do
+          patch :update, params: { id: drone, drone: attributes_for(:drone) }
+          expect(assigns(:drone)).to eq drone
+        end
+
+        it 'change existing attributes' do
+          patch :update, params: { id: drone, drone: { title: 'New name drone' } }
+          drone.reload
+
+          expect(drone.title).to eq 'New name drone'
+        end
+
+        it 'redirect to update drone-card' do
+          patch :update, params: { id: drone, drone: attributes_for(:drone) }
+          expect(response).to redirect_to drone
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not update drone-card' do
+          patch :update, params: { id: drone, drone: attributes_for(:drone, :invalid) }
+          drone.reload
+
+          expect(drone.title).to eq 'TitleDrone'
+        end
+      end
+    end
+
+    context 'Authenticated other user (not author)' do
+
+      before { login(other_user) }
+
+      it 'does not update drone' do
+        patch :update, params: { id: drone, drone: { title: 'new title' } }
+        drone.reload
+
+        expect(drone.title).to eq drone.title
+      end
+
+      it 'redirect to sign in' do
+        patch :update, params: { id: drone, drone: attributes_for(:drone) }
+        
+        expect(response).to redirect_to root_path
+      end
+    end
+
     context 'Unauthenticated user' do
       it 'does not update drone' do
         patch :update, params: { id: drone, drone: { title: 'new title' } }
@@ -147,8 +199,8 @@ RSpec.describe DronesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    context 'Authenticated user' do
-      before { login(user) }
+    context 'Authenticated admin user' do
+      before { login(user_admin) }
 
       let!(:drone) { create(:drone, category:, user:) }
 
@@ -157,6 +209,17 @@ RSpec.describe DronesController, type: :controller do
       end
 
       it 'redirect to home page' do
+        delete :destroy, params: { id: drone }
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'Authenticated user' do
+      before { login(user) }
+
+      let!(:drone) { create(:drone, category:, user:) }
+
+      it 'delete drone-card' do
         delete :destroy, params: { id: drone }
         expect(response).to redirect_to root_path
       end

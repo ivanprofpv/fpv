@@ -41,6 +41,7 @@ class DronesController < ApplicationController
   def edit; end
 
   def update
+    authorize @drone
     if @drone.update(drone_params)
       flash[:good] = 'Drone updated successfully.'
       redirect_to @drone
@@ -50,6 +51,7 @@ class DronesController < ApplicationController
   end
 
   def destroy
+    authorize @drone
     @drone.destroy
     flash[:good] = 'Drone deleted successfully.'
     redirect_to root_path
