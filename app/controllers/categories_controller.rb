@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
+    authorize Category
     @category = Category.new(category_params)
 
     if @category.save
@@ -26,6 +27,7 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def update
+    authorize @category
     if @category.update(category_params)
       flash[:good] = 'Category updated successfully.'
       redirect_to @category
@@ -35,6 +37,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    authorize @category
     @category.destroy
     flash[:good] = 'Category deleted successfully.'
     redirect_to root_path

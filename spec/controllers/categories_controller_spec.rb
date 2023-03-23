@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
   let(:user) { create(:user) }
+  let(:user_admin) { create(:user, admin: 'true') }
   let(:category) { create(:category) }
 
   describe 'GET #index' do
@@ -43,6 +44,27 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'POST #create' do
+    context 'Authenticated admin user' do
+      before { login(user_admin) }
+
+      context 'with valid attributes' do
+        it 'saves new category in database' do
+          expect do
+            post :create, params: { category: attributes_for(:category) }
+          end.to change(Category, :count).by(1)
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not saves new category-card in database' do
+          expect do
+            post :create,
+                 params: { category: attributes_for(:category, :invalid) }
+          end.to_not change(Category, :count)
+        end
+      end
+    end
+
     context 'Authenticated user' do
       before { login(user) }
 
@@ -50,7 +72,7 @@ RSpec.describe CategoriesController, type: :controller do
         it 'saves new category in database' do
           expect do
             post :create, params: { category: attributes_for(:category) }
-          end.to change(Category, :count).by(1)
+          end.to change(Category, :count).by(0)
         end
       end
 
@@ -76,17 +98,19 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'GET #edit' do
-    before { login(user) }
-    before { get :edit, params: { id: category } }
+    context 'Authenticated admin user' do
+      before { login(user_admin) }
+      before { get :edit, params: { id: category } }
 
-    it 'check if the data is set to a variable @category' do
-      expect(assigns(:category)).to eq category
+      it 'check if the data is set to a variable @category' do
+        expect(assigns(:category)).to eq category
+      end
     end
   end
 
   describe 'PATCH #update' do
     context 'Authenticated user' do
-      before { login(user) }
+      before { login(user_admin) }
 
       context 'with valid attributes' do
         it 'check if the data is set to a variable @category in controller' do
@@ -104,6 +128,38 @@ RSpec.describe CategoriesController, type: :controller do
         it 'redirect to update category' do
           patch :update, params: { id: category, category: attributes_for(:category) }
           expect(response).to redirect_to category
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not update category' do
+          patch :update, params: { id: category, category: attributes_for(:category, :invalid) }
+          category.reload
+
+          expect(category.title).to eq 'DroneCategory'
+        end
+      end
+    end
+
+    context 'Authenticated user' do
+      before { login(user) }
+
+      context 'with valid attributes' do
+        it 'check if the data is set to a variable @category in controller' do
+          patch :update, params: { id: category, category: attributes_for(:category) }
+          expect(assigns(:category)).to eq category
+        end
+
+        it 'change existing attributes' do
+          patch :update, params: { id: category, category: { title: 'New name category' } }
+          category.reload
+
+          expect(category.title).to eq category.title
+        end
+
+        it 'redirect to update category' do
+          patch :update, params: { id: category, category: attributes_for(:category) }
+          expect(response).to redirect_to root_path
         end
       end
 
@@ -135,7 +191,7 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'DELETE #destroy' do
     context 'Authenticated user' do
-      before { login(user) }
+      before { login(user_admin) }
 
       let!(:category) { create(:category) }
 
@@ -149,11 +205,26 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
 
+    context 'Authenticated user' do
+      before { login(user) }
+
+      let!(:category) { create(:category) }
+
+      it 'delete category' do
+        expect { delete :destroy, params: { id: category } }.to_not change(Category, :count)
+      end
+
+      it 'redirect to home page' do
+        delete :destroy, params: { id: category }
+        expect(response).to redirect_to root_path
+      end
+    end
+
     context 'Unauthenticated user' do
       let!(:category) { create(:category) }
 
       it 'delete category' do
-        expect { delete :destroy, params: { id: category } }.to change(Category, :count).by(0)
+        expect { delete :destroy, params: { id: category } }.to_not change(Category, :count)
       end
 
       it 'redirect to home page' do
