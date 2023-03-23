@@ -12,7 +12,11 @@
                   <img src="/avatar_default.png" alt="<%= current_user.username %>" class="rounded-circle" width="150">
                 <% end %>
                 <div class="mt-3">
-                  <h4><%= current_user.username %></h4>
+                  <h4><%= @profile.user.username %></h4>
+                  <% unless policy(@profile).show? %>
+                    <button class="btn btn-primary" disabled>Follow</button>
+                    <button class="btn btn-outline-primary" disabled>Message</button>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -33,7 +37,7 @@
         <div class="col-md-8">
           <div class="card mb-3">
             <div class="card-body">
-              <% if current_user&.author?(@profile) %>
+              <% if policy(@profile).show? %>
               <div class="row">
                 <div class="col-sm-3">
                   <h6 class="mb-0">Email</h6>
@@ -70,12 +74,14 @@
                   <%= @profile.city %>
                 </div>
               </div>
+              <% if policy(@profile).edit? %>
               <hr>
               <div class="row">
                 <div class="col-sm-12">
                   <%= link_to 'Edit Profile', edit_profile_path, class: "btn btn-info btn-sm" %>
                 </div>
               </div>
+              <% end %>
             </div>
           </div>
         </div>
