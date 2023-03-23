@@ -25,11 +25,13 @@ class CommentsController < ApplicationController
   end
 
   def update
+    authorize @comment
     @drone = @comment.drone
     @comment.update(comment_params)
   end
 
   def destroy
+    authorize @comment
     @comment.destroy
   end
 
