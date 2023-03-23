@@ -25,11 +25,15 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                 <h6 class="mb-0">Drones: </h6>
-                <span class="text-secondary drone"><%= count_drone_user %></span>
+                <div id="drone">
+                  <span class="text-secondary"><%= count_drone_user %></span>
+                </div
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                 <h6 class="mb-0">Comments: </h6>
-                <span class="text-secondary comment"><%= count_comment_user %></span>
+                <div id="comment">
+                  <span class="text-secondary comment"><%= count_comment_user %></span>
+              </div>
               </li>
             </ul>
           </div>
