@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ComponentsController, type: :controller do
   let(:user) { create(:user) }
+  let(:user_admin) { create(:user, admin: 'true') }
   let(:other_user) { create(:user) }
   let(:category) { create(:category) }
   let(:component_category) { create(:component_category) }
@@ -26,6 +27,32 @@ RSpec.describe ComponentsController, type: :controller do
   describe 'POST #create' do
     context 'Authenticated user' do
       before :each do
+        login(user_admin)
+      end
+
+      context 'with valid attributes' do
+        it 'save component in database' do
+          expect do
+            post :create, params: { drone_id: drone,
+                                    component: valid_params },
+                                    format: :js
+          end.to change(Component, :count).by(1)
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not saves new component in database' do
+          expect do
+            post :create, params: { drone_id: drone,
+                                    component: invalid_params },
+                                    format: :js
+          end.to_not change(Component, :count)
+        end
+      end
+    end
+
+    context 'Authenticated user' do
+      before :each do
         login(user)
       end
 
@@ -36,6 +63,32 @@ RSpec.describe ComponentsController, type: :controller do
                                     component: valid_params },
                                     format: :js
           end.to change(Component, :count).by(1)
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not saves new component in database' do
+          expect do
+            post :create, params: { drone_id: drone,
+                                    component: invalid_params },
+                                    format: :js
+          end.to_not change(Component, :count)
+        end
+      end
+    end
+
+    context 'Authenticated other user' do
+      before :each do
+        login(other_user)
+      end
+
+      context 'with valid attributes' do
+        it 'do not save component in database' do
+          expect do
+            post :create, params: { drone_id: drone,
+                                    component: valid_params },
+                                    format: :js
+          end.to_not change(Component, :count)
         end
       end
 
@@ -73,6 +126,59 @@ RSpec.describe ComponentsController, type: :controller do
       create(:component, drone_id: drone.id, component_category_id: component_category.id)
     end
 
+    context 'authenticated admin user' do
+      before { login(user_admin) }
+      context 'with valid attributes' do
+        context "with user's component" do
+          it 'changes component attributes' do
+            patch :update,
+                  params: { id: component, component: { title: 'new body', url: 'https://yandex.ru', price: '2' } }, format: :js
+            component.reload
+            expect(component.title).to eq 'new body'
+            expect(component.url).to eq 'https://yandex.ru'
+            expect(component.price).to eq 2
+          end
+
+          it 'renders update view' do
+            patch :update,
+                  params: { id: component, component: { title: 'new body', url: 'https://yandex.ru', price: '2' } }, format: :js
+            expect(response).to render_template :update
+          end
+        end
+
+        context "with other's component" do
+          let!(:component) do
+            create(:component, drone_id: drone_other_user.id,
+                               component_category_id: component_category.id)
+          end
+
+          it 'not changes component attributes' do
+            patch :update,
+                  params: { id: component, component: { title: 'new body', url: 'https://yandex.ru', price: '2' } }, format: :js
+            
+            expect(component.title).to_not eq 'new body'
+            expect(component.url).to_not eq 'https://yandex.ru'
+            expect(component.price).to_not eq '2'
+          end
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not changes component attributes' do
+          expect do
+            patch :update,
+                  params: { id: component, component: attributes_for(:component, :invalid) }, format: :js
+          end.to_not change(component, :title)
+        end
+
+        it 'renders update view' do
+          patch :update,
+                params: { id: component, component: attributes_for(:component, :invalid) }, format: :js
+          expect(response).to render_template :update
+        end
+      end
+    end
+
     context 'authenticated user' do
       before { login(user) }
       context 'with valid attributes' do
@@ -102,6 +208,7 @@ RSpec.describe ComponentsController, type: :controller do
           it 'not changes component attributes' do
             patch :update,
                   params: { id: component, component: { title: 'new body', url: 'https://yandex.ru', price: '2' } }, format: :js
+            
             expect(component.title).to_not eq 'new body'
             expect(component.url).to_not eq 'https://yandex.ru'
             expect(component.price).to_not eq '2'
@@ -156,6 +263,22 @@ RSpec.describe ComponentsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    context 'authenticated admin user' do
+      before { login(user_admin) }
+
+      context 'component that the user created' do
+        let!(:component) do
+          create(:component, drone_id: drone.id, component_category_id: component_category.id)
+        end
+
+        it 'delete the component' do
+          expect do
+            delete :destroy, params: { id: component }, format: :js
+          end.to change(Component, :count).by(-1)
+        end
+      end
+    end
+
     context 'authenticated user' do
       before { login(user) }
 

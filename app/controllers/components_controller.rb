@@ -13,11 +13,13 @@ class ComponentsController < ApplicationController
 
   def create
     @component = @drone.components.new(component_params)
+    authorize @component
 
     @component.save
   end
 
   def update
+    authorize @component
     @drone = @component.drone
     @component.update(component_params)
   end
@@ -25,6 +27,7 @@ class ComponentsController < ApplicationController
   def edit; end
 
   def destroy
+    authorize @component
     @component.destroy
   end
 
