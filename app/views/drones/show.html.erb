@@ -15,9 +15,11 @@
   <div id="components" class="mb-3">
     <%= render 'components/component' %>
   </div>
+<% if policy(@drone).update? %>
   <div id="form_components" class="mb-3">
     <%= render 'components/form' %>
   </div>
+<% end %>
 </div>
 <hr>
 <h2 class="display-6">Comments</h1>

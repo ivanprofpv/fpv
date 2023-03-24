@@ -9,7 +9,7 @@
         <%= @category.title %>
       </div>
     </div>
-      <% if user_signed_in? %>
+      <% if policy(@category).edit? %>
         <p><%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-info btn-sm edit-drone-link' %></p> | 
         <%= button_to 'Delete', category_path(@category), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %>
       <% end %>

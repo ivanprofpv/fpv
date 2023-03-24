@@ -25,8 +25,10 @@
   </div>
 </div>
 <div class="float-end pt-1">
-  <% if current_user&.author?(@drone) %>
+  <% if policy(@drone).edit? %>
     <%= link_to 'Edit build', edit_drone_path(@drone), class: 'btn btn-info btn-sm' %>
+  <% end %>
+  <% if policy(@drone).destroy? %>
     <%= link_to 'Delete build', drone_path(@drone), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
   <% end %>
 </div>

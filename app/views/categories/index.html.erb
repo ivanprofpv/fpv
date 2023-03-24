@@ -4,7 +4,11 @@
   <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="ms-2 me-auto">
       <div class="fw-bold">
-        <%= link_to category_path(category) do %>
+        <% if current_user.admin? %>
+          <%= link_to category_path(category) do %>
+            <%= category.title %>
+          <% end %>
+        <% else %>
           <%= category.title %>
         <% end %>
       </div>
