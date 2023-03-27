@@ -22,7 +22,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || user_author?
+    admin? || user_author?
   end
 
   def create?
@@ -30,13 +30,20 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? || user_author?
+    admin? || user_author?
   end
 
   private
 
+  def admin?
+    if user.present?
+      user.admin?
+    end
+  end
+
   def user_author?
-    # byebug
-    user == record.user
+    if user.present?
+      user == record.user
+    end
   end
 end

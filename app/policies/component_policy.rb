@@ -14,26 +14,33 @@ class ComponentPolicy < ApplicationPolicy
   end
 
   def edit?
-    update?
+    destroy?
   end
 
   def update?
-    user.admin? || user_author?
+    destroy?
   end
 
   def create?
-    user.admin? || user_author?
+    destroy?
   end
 
   def destroy?
-    user.admin? || user_author?
+    admin? || user_author?
   end
 
   private
 
-  def user_author?
-    drone_user = Drone.where('id = ?', record.drone_id).pluck(:user_id).join().to_i
+  def admin?
+    if user.present?
+      user.admin?
+    end
+  end
 
-    user.id == drone_user
+  def user_author?
+    if user.present?
+      drone_user = Drone.where('id = ?', record.drone_id).pluck(:user_id).join().to_i
+      user.id == drone_user
+    end
   end
 end

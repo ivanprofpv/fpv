@@ -14,20 +14,26 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin
+    admin?
   end
 
   def update?
-    user.admin?
+    admin?
   end
 
   def create?
-    user.admin?
+    admin?
   end
 
   def destroy?
-    user.admin?
+    admin?
   end
 
   private
+
+  def admin?
+    if user.present?
+      user.admin?
+    end
+  end
 end

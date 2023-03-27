@@ -15,11 +15,11 @@ class DronePolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? || user_author?
+    admin? || user_author?
   end
 
   def update?
-    user.admin? || user_author?
+    admin? || user_author?
   end
 
   def create?
@@ -27,12 +27,20 @@ class DronePolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin?
+    admin?
   end
 
   private
 
+  def admin?
+    if user.present?
+      user.admin?
+    end
+  end
+
   def user_author?
-    user == record.user
+    if user.present?
+      user == record.user
+    end
   end
 end

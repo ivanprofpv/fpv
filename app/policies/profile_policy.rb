@@ -7,24 +7,32 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin? || user_author?
+    destroy?
   end
 
   def edit?
-    user.admin? || user_author?
+    destroy?
   end
 
   def update?
-    user.admin? || user_author?
+    destroy?
   end
 
   def destroy?
-    user.admin? || user_author?
+    admin? || user_author?
   end
 
   private
 
+  def admin?
+    if user.present?
+      user.admin?
+    end
+  end
+
   def user_author?
-    user == record.user
+    if user.present?
+      user == record.user
+    end
   end
 end
