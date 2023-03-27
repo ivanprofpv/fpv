@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'User can delete component in drone-card' do
   given(:user) { create(:user) }
+  given(:user_admin) { create(:user, admin: 'true') }
   given(:other_user) { create(:user) }
   given(:category) { create(:category) }
   given!(:drone) { create(:drone, user: user, category: category) }
@@ -9,6 +10,17 @@ feature 'User can delete component in drone-card' do
   describe 'Authenticated user', js: true do
     background do
       sign_in(user)
+      visit drone_path(drone)
+    end
+
+    scenario 'delete drone if author' do
+      expect(page).to_not have_content 'Delete build'
+    end
+  end
+
+  describe 'Authenticated user', js: true do
+    background do
+      sign_in(user_admin)
       visit drone_path(drone)
     end
 
