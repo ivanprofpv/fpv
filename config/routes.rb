@@ -21,5 +21,10 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  namespace :admin do
+    resources :dashboard
+    resources :profiles, only: %i[ edit update ]
+  end
+
   root to: 'drones#index'
 end
