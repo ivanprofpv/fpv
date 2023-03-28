@@ -1,0 +1,14 @@
+<ul class="list-group list-group-flush">
+  <% @component_categories.each do |component| %>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw">
+        <%= link_to component_category_path(component) do %>
+          <%= component.title %>
+        <% end %>  
+      </div>
+    </div>
+    <span class="badge bg-primary rounded-pill"><%= all_count_components_in_category(component) %></span>
+  </li>
+  <% end %>
+</ul>

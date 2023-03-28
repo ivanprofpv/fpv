@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy edit]
   before_action :find_drone, only: %i[create]
-  before_action :find_comment, only: %i[update edit destroy upvote show]
+  before_action :find_comment, only: %i[update edit destroy upvote]
 
   def index; end
 
@@ -17,8 +17,6 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
   end
-
-  def show; end
 
   def create
     @comment = @drone.comments.new(comment_params.merge(user_id: current_user.id))

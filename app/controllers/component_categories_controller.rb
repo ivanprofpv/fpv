@@ -3,7 +3,7 @@ class ComponentCategoriesController < ApplicationController
   before_action :load_component_category, only: %i[show update destroy edit]
 
   def index
-    @component_category = ComponentCategory.all
+    @component_category = ComponentCategory.all.order(created_at: :desc)
   end
 
   def show; end

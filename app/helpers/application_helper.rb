@@ -14,6 +14,6 @@ module ApplicationHelper
   end
 
   def url_drone_for_list_comment_admin(comment)
-    comment_url = Comment.where(id: comment).pluck(:drone_id)
+    comment_url = Comment.where('id = ?', comment).pluck(:drone_id)
   end
 end
