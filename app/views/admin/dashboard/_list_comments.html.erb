@@ -1,0 +1,5 @@
+<% @comments.each do |comment| %>
+    <li><%= link_to drone_path(url_drone_for_list_comment_admin(comment)) do %>
+      <%= comment.body %></li>
+    <% end %>
+<% end %>

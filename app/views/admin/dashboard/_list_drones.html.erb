@@ -1,0 +1,5 @@
+<% @drones.each do |drone| %>
+    <li><%= link_to drone_path(drone) do %>
+      <%= drone.title %></li>
+    <% end %>
+<% end %>

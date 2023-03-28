@@ -20,6 +20,7 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<%= profile_path(current_user) %>">You profile</a></li>
                 <% if current_user.admin? %>
+                <li><a class="dropdown-item" href="<%= admin_dashboard_index_path %>">Admin panel</a></li>
                   <li><a class="dropdown-item" href="<%= new_component_category_path %>">Create component category</a></li>
                   <li><a class="dropdown-item" href="<%= new_category_path %>">Create category</a></li>
                   <li><hr class="dropdown-divider"></li>
