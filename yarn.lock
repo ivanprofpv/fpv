@@ -926,16 +926,6 @@
   resolved "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.3.tgz"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@hotwired/stimulus-webpack-helpers@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@hotwired/stimulus-webpack-helpers/-/stimulus-webpack-helpers-1.0.1.tgz#4cd74487adeca576c9865ac2b9fe5cb20cef16dd"
-  integrity sha512-wa/zupVG0eWxRYJjC1IiPBdt3Lruv0RqGN+/DTMmUWUyMAEB27KXmVY6a8YpUVTM7QwVuaLNGW4EqDgrS2upXQ==
-
-"@hotwired/stimulus@^3.0.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.1.tgz#e3de23623b0c52c247aba4cd5d530d257008676b"
-  integrity sha512-HGlzDcf9vv/EQrMJ5ZG6VWNs8Z/xMN+1o2OhV1gKiSG6CqZt5MCBB1gRg5ILiN3U0jEAxuDTNPRfBcnZBDmupQ==
-
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz"
@@ -1004,6 +994,11 @@
   version "2.11.6"
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
+
+"@rails/actioncable@^6.0.0":
+  version "6.1.7"
+  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.1.7.tgz#8b4506925d3f7146a70941e4db7ce9dda99f99ae"
+  integrity sha512-F6S74NGpxhbbDRFsQFGYqefRfZPgYvePNtz9hHKYOqLturrsqrDoG+UcrxEGHsvqDUorMYfx4Wl3K8smmk/u2g==
 
 "@rails/actiontext@6.1.7-2":
   version "6.1.7-2"
@@ -1465,13 +1460,6 @@ atob@^2.1.2:
   resolved "https://registry.npmjs.org/atob/-/atob-2.1.2.tgz"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-autocomplete.js@^0.38.1:
-  version "0.38.1"
-  resolved "https://registry.npmjs.org/autocomplete.js/-/autocomplete.js-0.38.1.tgz"
-  integrity sha512-6pSJzuRMY3pqpozt+SXThl2DmJfma8Bi3SVFbZHS0PW/N72bOUv+Db0jAh2cWOhTsA4X+GNmKvIl8wExJTnN9w==
-  dependencies:
-    immediate "^3.2.3"
-
 autoprefixer@^9.6.1:
   version "9.8.8"
   resolved "https://registry.npmjs.org/autoprefixer/-/autoprefixer-9.8.8.tgz"
@@ -1760,11 +1748,6 @@ browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.21.3, browserslist@^4
     electron-to-chromium "^1.4.284"
     node-releases "^2.0.8"
     update-browserslist-db "^1.0.10"
-
-bs5-lightbox@^1.8.3:
-  version "1.8.3"
-  resolved "https://registry.npmjs.org/bs5-lightbox/-/bs5-lightbox-1.8.3.tgz"
-  integrity sha512-fEIjplDAtWw17vi6dFeu7+Td52sk3qQ9FbOOVSpWM3nqio502vZKIA0Q0De9D9ah44BGd+zOKUsikRPlKE2hFg==
 
 buffer-from@^1.0.0:
   version "1.1.2"
@@ -3585,11 +3568,6 @@ iferr@^0.1.5:
   resolved "https://registry.npmjs.org/iferr/-/iferr-0.1.5.tgz"
   integrity sha512-DUNFN5j7Tln0D+TxzloUjKB+CtVu6myn0JEFak6dG18mNt9YkQ6lzGCdafwofISZ1lLF3xRHJ98VKy9ynkcFaA==
 
-immediate@^3.2.3:
-  version "3.3.0"
-  resolved "https://registry.npmjs.org/immediate/-/immediate-3.3.0.tgz"
-  integrity sha512-HR7EVodfFUdQCTIeySw+WDRFJlPcLOJbXfwwZ7Oom6tjsvZ3bOkCDJHehQC3nxJrv7+f9XecwazynjU8e4Vw3Q==
-
 immutable@^4.0.0:
   version "4.2.4"
   resolved "https://registry.npmjs.org/immutable/-/immutable-4.2.4.tgz"
@@ -4166,11 +4144,6 @@ last-call-webpack-plugin@^3.0.0:
   dependencies:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
-
-lightgallery@^2.7.0:
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/lightgallery/-/lightgallery-2.7.1.tgz"
-  integrity sha512-NbXOzD2APY1OhOOn464jDsBZBaCRahUoLvBxhDFxvwJeC8hCkCIPYSjGgGTYINxVK09DKMsNDJzRr1ngH5nDdg==
 
 lines-and-columns@^1.1.6:
   version "1.2.4"
@@ -6494,23 +6467,6 @@ statuses@2.0.1:
   version "1.5.0"
   resolved "https://registry.npmjs.org/statuses/-/statuses-1.5.0.tgz"
   integrity sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==
-
-stimulus-character-counter@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/stimulus-character-counter/-/stimulus-character-counter-4.2.0.tgz#6e7782c2c525ccc661ffbb39a7b15085a3a42a21"
-  integrity sha512-5ZN5wFlOnIkZRSiwtC7zb880yvE4O/4+KOhdg0z6zQet4iLA2+W0NJvHX5teW6tl5M1IGzHrgOtuEsUVfQ2TrA==
-
-stimulus-lightbox@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.npmjs.org/stimulus-lightbox/-/stimulus-lightbox-3.2.0.tgz"
-  integrity sha512-bbT2oCSPxloWjLpU0K7YLObOBefOMDL+w0C14hYnz6fLTGfF7kny0ji3n8MH41npXdZxf6GMAoJpE6e2ORximw==
-  dependencies:
-    lightgallery "^2.7.0"
-
-stimulus-remote-rails@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/stimulus-remote-rails/-/stimulus-remote-rails-4.1.0.tgz#3bc7278bf7eacd83d36446bff767f61047693c37"
-  integrity sha512-ZwaB7rX4eRuYVHWw7zspm41G/7/bXOfsJr7KUR5HiYtaIL6ep+fL99qrI1KmRV0O48/VVa5ZtXcYnGnutxwblw==
 
 stream-browserify@^2.0.1:
   version "2.0.2"
