@@ -27,6 +27,4 @@ Rails.application.routes.draw do
   end
 
   root to: 'drones#index'
-  
-  mount ActionCable.server => '/cable'
 end

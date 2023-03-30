@@ -8,6 +8,7 @@
     "bootstrap": "^5.2.3",
     "jquery": "^3.6.3",
     "js-autocomplete": "^1.0.4",
+    "autocomplete.js": "^0.38.1",
     "rails-ujs": "^5.2.8-1",
     "trix": "1.2.0",
     "turbolinks": "^5.2.0",
