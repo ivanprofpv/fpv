@@ -54,6 +54,13 @@ gem "active_storage_validations"
 gem "font-awesome-sass", "~> 6.3.0"
 gem "acts_as_votable"
 gem "pundit"
+gem "sidekiq", "~> 7.0.7"
+
+# Admin panel sidekiq
+gem "sinatra", require: false
+
+# Crone
+gem "whenever", require: false
 
 group :development, :test do
   gem "rspec-rails", "~> 4.1.0"

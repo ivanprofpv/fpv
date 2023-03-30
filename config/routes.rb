@@ -1,4 +1,9 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  authenticate :user, lambda {|u| u.admin?} do
+    mount Sidekiq::Web => '/admin/sidekiq'
+  end
 
   devise_for :users, controllers: { registrations: 'users/registrations' }, path_names: { sign_in: :login, sign_out: :logout }
   resources :profiles, only: %i[ edit update show ]

@@ -19,6 +19,8 @@ module Fpv
     #
     config.time_zone = 'Moscow'
 
+    config.active_job.queue_adapter = :sidekiq
+    
     config.action_cable.disable_request_forgery_protection = false
 
     config.generators do |g|
