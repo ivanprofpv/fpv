@@ -54,7 +54,8 @@ gem "active_storage_validations"
 gem "font-awesome-sass", "~> 6.3.0"
 gem "acts_as_votable"
 gem "pundit"
-gem "sidekiq", "~> 7.0.7"
+gem 'sidekiq', '~> 6.5.5'
+gem "redis"
 
 # Admin panel sidekiq
 gem "sinatra", require: false
