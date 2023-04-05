@@ -20,8 +20,10 @@ module Fpv
     config.time_zone = 'Moscow'
 
     config.active_job.queue_adapter = :sidekiq
-    
+
     config.action_cable.disable_request_forgery_protection = false
+
+    config.eager_load_paths.reject! { |path| path == Rails.root.join("app", "indices").to_s }
 
     config.generators do |g|
       g.test_framework :rspec,
