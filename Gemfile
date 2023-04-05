@@ -56,6 +56,8 @@ gem "acts_as_votable"
 gem "pundit"
 gem 'sidekiq', '~> 6.5.5'
 gem "redis"
+gem 'mysql2', '~> 0.4'
+gem "thinking-sphinx", "~> 5.5"
 
 # Admin panel sidekiq
 gem "sinatra", require: false
@@ -70,6 +72,7 @@ group :development, :test do
   gem "rubocop", "~> 1.48", require: false
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'database_cleaner-active_record'
 end
 
 group :development do

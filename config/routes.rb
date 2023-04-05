@@ -31,5 +31,6 @@ Rails.application.routes.draw do
     resources :profiles, only: %i[ edit update ]
   end
 
+  get :search, to: 'search#index'
   root to: 'drones#index'
 end
