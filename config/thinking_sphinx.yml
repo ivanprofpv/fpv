@@ -1,0 +1,8 @@
+test:
+  mysql41: 9307
+
+production:
+  pid_file: /home/fpv/shared/tmp/searchd.pid
+  indices_location: /home/fpv/shared/db/sphinx
+  configuration_file: /home/fpv/shared/production.sphinx.conf
+  binlog_path: /home/fpv/shared/binlog

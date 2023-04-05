@@ -69,6 +69,8 @@ yarn-debug.log*
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/database.yml
+/config/*.sphinx.conf
+/db/sphinx
 
 /public/packs
 /public/packs-test
