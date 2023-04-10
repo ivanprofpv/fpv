@@ -48,7 +48,7 @@ gem "bootsnap", require: false
 gem "devise", "~> 4.8.1"
 gem "bootstrap", "~> 5.2.2"
 gem "jquery-rails"
-# gem "ruby-vips"
+gem "ruby-vips"
 gem "image_processing", "~> 1.2"
 gem "active_storage_validations"
 gem "font-awesome-sass", "~> 6.3.0"
@@ -56,8 +56,8 @@ gem "acts_as_votable"
 gem "pundit"
 gem 'sidekiq', '~> 6.5.5'
 gem "redis"
-# gem 'mysql2', '~> 0.4'
-# gem "thinking-sphinx", "~> 5.5"
+gem 'mysql2', '~> 0.4'
+gem "thinking-sphinx", "~> 5.5"
 
 # Admin panel sidekiq
 gem "sinatra", require: false
