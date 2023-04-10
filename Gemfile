@@ -73,16 +73,18 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'database_cleaner-active_record'
-  gem 'capistrano', '~> 3.11'
-  gem 'capistrano-rails', '~> 1.4'
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "letter_opener"
+  gem 'capistrano', '~> 3.11', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', '~> 1.4', require: false
+  gem 'capistrano-passenger', '~> 0.2.0', require: false
+  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4', require: false
+
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
