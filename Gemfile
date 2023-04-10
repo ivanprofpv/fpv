@@ -58,10 +58,6 @@ gem 'sidekiq', '~> 6.5.5'
 gem "redis"
 gem 'mysql2', '~> 0.4'
 gem "thinking-sphinx", "~> 5.5"
-gem 'capistrano', '~> 3.11'
-gem 'capistrano-rails', '~> 1.4'
-gem 'capistrano-passenger', '~> 0.2.0'
-gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
 # Admin panel sidekiq
 gem "sinatra", require: false
@@ -77,6 +73,10 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'database_cleaner-active_record'
+  gem 'capistrano', '~> 3.11'
+  gem 'capistrano-rails', '~> 1.4'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 end
 
 group :development do
