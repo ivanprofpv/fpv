@@ -95,8 +95,8 @@ Rails.application.configure do
     port: 587,
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["MAIL_LOGIN"],
-    password: ENV["MAIL_PASSWORD"]
+    user_name: Rails.application.credentials[Rails.env.to_sym][:smtp][:username],
+    password: Rails.application.credentials[Rails.env.to_sym][:smtp][:password]
   }
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?

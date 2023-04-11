@@ -3,6 +3,7 @@ set :rail_env, :production
 
  set :ssh_options, {
    keys: %w(C:/Users/bezuglyak_iv/.ssh/id_rsa),
+   keys: %w(/home/ivan/.ssh/id_rsa),
    forward_agent: true,
    auth_methods: %w(publickey password),
    port: 2277
