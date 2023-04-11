@@ -83,7 +83,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
   # Mailer
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => '91.200.84.18' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
@@ -91,9 +91,9 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "",
-    port: 25,
-    domain: "",
+    address: "mail.profpv.ru",
+    port: 465,
+    domain: "mail.profpv.ru",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["MAIL_LOGIN"],
