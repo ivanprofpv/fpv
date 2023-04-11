@@ -92,7 +92,7 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     address: "connect.smtp.bz",
-    port: 465,
+    port: 587,
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["MAIL_LOGIN"],
