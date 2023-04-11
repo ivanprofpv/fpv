@@ -91,9 +91,9 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "mail.profpv.ru",
+    address: "connect.smtp.bz",
     port: 465,
-    domain: "mail.profpv.ru",
+    domain: "connect.smtp.bz",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["MAIL_LOGIN"],

@@ -403,6 +403,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   mysql2 (~> 0.5.5)
+  net-smtp
   pg (>= 0.18, < 2.0)
   puma (~> 5.0)
   pundit

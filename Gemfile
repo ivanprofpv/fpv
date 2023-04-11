@@ -58,6 +58,7 @@ gem 'sidekiq', '~> 6.5.5'
 gem "redis"
 gem 'mysql2', '~> 0.5.5'
 gem "thinking-sphinx", "~> 5.5"
+gem 'net-smtp'
 
 # Admin panel sidekiq
 gem "sinatra", require: false
