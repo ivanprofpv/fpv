@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
   def index
-    @search_result = Drone.search(params[:query])
+    @search_result = SearchService.new(params[:query]).call
   end
 end
