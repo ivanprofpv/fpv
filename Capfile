@@ -19,6 +19,8 @@ require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'capistrano/rvm'
 require 'capistrano/sidekiq'
+require "thinking_sphinx/capistrano"
+require "whenever/capistrano"
 
 # Include tasks from other gems included in your Gemfile
 #
