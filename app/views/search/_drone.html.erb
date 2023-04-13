@@ -1,3 +1,5 @@
-<%= @search_result.each do |result| %>
-  <%= link_to result.title.to_s, drone_path(result), target: :_blank %>
-<% end %>
+<ul class="list-group list-group-flush">
+  <% @search_result.each do |result| %>
+    <li class="list-group-item"><%= link_to result.title, drone_path(result), target: :_blank %></li>
+  <% end %>
+</ul>
