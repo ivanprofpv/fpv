@@ -32,5 +32,10 @@ Rails.application.routes.draw do
   end
 
   get :search, to: 'search#index'
+
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server'
+  get '/422', to: 'errors#unprocessable'
+
   root to: 'drones#index'
 end
