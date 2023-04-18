@@ -3,7 +3,7 @@ class DronesController < ApplicationController
   before_action :load_drone, only: %i[show edit update destroy upvote]
 
   def index
-    @drones = Drone.all.order(created_at: :desc)
+    @drones = Drone.order(created_at: :desc).page params[:page]
   end
 
   def upvote

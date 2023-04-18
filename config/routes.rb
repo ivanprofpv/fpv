@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
     resources :comments, only: %i[ create upvote new update destroy]
     resources :components, shallow: true
+    get '/page/:page', action: :index, on: :collection
   end
 
   resources :component_categories

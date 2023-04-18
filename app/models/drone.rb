@@ -10,6 +10,8 @@ class Drone < ApplicationRecord
 
   has_rich_text :content
 
+  paginates_per 2
+
   acts_as_votable cacheable_strategy: :update_columns
 
   accepts_nested_attributes_for :components, reject_if: :all_blank, allow_destroy: true
