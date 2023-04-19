@@ -10,7 +10,7 @@ class Drone < ApplicationRecord
 
   has_rich_text :content
 
-  paginates_per 2
+  paginates_per 12
 
   acts_as_votable cacheable_strategy: :update_columns
 
