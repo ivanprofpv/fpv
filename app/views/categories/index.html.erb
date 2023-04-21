@@ -3,8 +3,8 @@
   <% @categories.each do |category| %>
   <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="ms-2 me-auto">
-      <div class="fw-bold">
-        <% if current_user.admin? %>
+      <div class="fw-bold category-<%= category.id %>">
+        <% if policy(@categories).edit? %>
           <%= link_to category_path(category) do %>
             <%= category.title %>
           <% end %>
