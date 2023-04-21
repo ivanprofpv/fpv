@@ -11,7 +11,7 @@
     <div class="post-heading">
       <h1><%= @drone.title %></h1>
       <span class="meta">Posted by
-        <a href="#">Author</a><br>
+        <a href="<%= profile_path(@drone.user) %>"><%= @drone.user.username %></a><br>
         Category: <%= @category_cat.title %>
       </span>
     </div>
