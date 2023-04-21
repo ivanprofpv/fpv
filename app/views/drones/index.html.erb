@@ -1,19 +1,19 @@
 <br>
 <div class="row row-cols-1 row-cols-md-2 g-4">
   <% @drones.each do |drone| %>
-    <div class="content">
       <%= link_to drone_path(drone) do %>
+      <div class="content">
         <div class="card border-0">
           <div class="image">
             <div class="content-overlay"></div>
-            <% if drone.foto.attached? %>
-              <%= image_tag drone.foto, class: "card-img-top rounded-0", alt: "#{drone.title}" %>
-            <% else %>
-              <%= image_tag '/drone_default.jpg', class: "card-img-top rounded-0", alt: "#{drone.title}" %>
-            <% end %>
-            <div class="content-details fadeIn-bottom">
-              <h3 class="content-title"><%= drone.title %></h3>
-            </div>
+              <% if drone.foto.attached? %>
+                <%= image_tag drone.foto, class: "card-img-top rounded-0", alt: "#{drone.title}" %>
+              <% else %>
+                <%= image_tag '/drone_default.jpg', class: "card-img-top rounded-0", alt: "#{drone.title}" %>
+              <% end %>
+              <div class="content-details fadeIn-bottom">
+                <h3 class="content-title"><%= drone.title %></h3>
+              </div>
           </div>
         </div>
       <% end %>
