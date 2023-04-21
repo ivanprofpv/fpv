@@ -2,12 +2,12 @@
 <div class="row row-cols-1 row-cols-md-2 g-4">
   <% @drones.each do |drone| %>
     <%= link_to drone_path(drone) do %>
-      <div class="card">
+      <div class="card border-0">
         <div class="image">
           <% if drone.foto.attached? %>
-            <%= image_tag drone.foto, class: "card-img-top", alt: "#{drone.title}" %>
+            <%= image_tag drone.foto, class: "card-img-top rounded-0", alt: "#{drone.title}" %>
           <% else %>
-            <%= image_tag '/drone_default.jpg', class: "card-img-top", alt: "#{drone.title}" %>
+            <%= image_tag '/drone_default.jpg', class: "card-img-top rounded-0", alt: "#{drone.title}" %>
           <% end %>
           <div class="bottom-left"><%= drone.title %></div>
         </div>
