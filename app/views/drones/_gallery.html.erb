@@ -1,11 +1,11 @@
 <% if @drone.gallerys.attached? %>
-<div class="grid text-center">
-  <div class="g-col-6 g-col-md-4">
+<div class="row">
   <% @drone.gallerys.each do |pic| %>
-      <%= link_to url_for(pic) do %>
-          <%= image_tag url_for(pic.variant(resize_to_fit: [500, 500])) %>
+  <div class="col-4">
+      <%= link_to url_for(pic), 'data-dimbox': "photos" do %>
+          <% image_tag url_for(pic), class: "gallery_img rounded-0" %>
       <% end %>
+       </div>
   <% end %>
-  </div>
 </div>
 <% end %>

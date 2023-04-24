@@ -24,6 +24,7 @@ require("jquery")
 require("comments/edit")
 require("components/add_component")
 require("components/edit")
+require("gallery/dimbox")
 
 require("@popperjs/core")
 
