@@ -22,6 +22,20 @@ require 'capistrano/sidekiq'
 require "thinking_sphinx/capistrano"
 require "whenever/capistrano"
 
+namespace :assets do
+  task :precompile do
+    on roles(:web)  do
+      within release_path  do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "assets:precompile"
+        end
+      end
+    end
+  end
+end 
+
+after "deploy:updated", "assets:precompile" 
+
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
