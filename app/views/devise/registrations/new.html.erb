@@ -10,12 +10,12 @@
             <%= render "devise/shared/error_messages", resource: resource %>
 
             <div class="form-outline mb-4">
-              <%= f.text_field :username, class: "form-control form-control-lg", id: "form3Example3cg", autocomplete: "username" %>
+              <%= f.text_field :username, class: "form-control form-control-lg", id: "username", autocomplete: "username" %>
               <label class="form-label" for="form3Example3cg">Username</label>
             </div>
 
             <div class="form-outline mb-4">
-              <%= f.email_field :email, class: "form-control form-control-lg", id: "form3Example3cg", autofocus: true, autocomplete: "email" %>
+              <%= f.email_field :email, class: "form-control form-control-lg", id: "email", autofocus: true, autocomplete: "email" %>
               <label class="form-label" for="form3Example3cg">Your Email</label>
             </div>
 
@@ -23,18 +23,20 @@
               <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %><br />
-              <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg", id: "form3Example4cg" %>
-              <label class="form-label" for="form3Example4cg">Password</label>
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg password icon-rtl", id: "password" %>
+                <i class="bi-globe"></i>
+              <div class="eye_icon">Show Password</div>
+              <label class="form-label" for="password">Password</label>
             </div>
 
             <div class="form-outline mb-4">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg", id: "form3Example4cdg" %>
-              <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg", id: "confirm_password" %>
+              <label class="form-label" for="confirm_password">Repeat your password</label>
             </div>
 
             <div class="form-check d-flex justify-content-center mb-5">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-              <label class="form-check-label" for="form2Example3g">
+              <input class="form-check-input me-2" type="checkbox" value="" id="agree" />
+              <label class="form-check-label" for="agree">
                 I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
               </label>
             </div>
@@ -42,7 +44,7 @@
             <div class="d-flex justify-content-center">
               <%= f.submit "Register", class: 'btn btn-info btn-lg' %>
             </div>
-              <%= render "devise/shared/links" %>   
+              <%= render "devise/shared/links" %>
           <% end %>
         </div>
       </div>
