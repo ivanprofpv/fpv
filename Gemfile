@@ -51,7 +51,7 @@ gem "jquery-rails"
 gem "ruby-vips"
 gem "image_processing", "~> 1.2"
 gem "active_storage_validations"
-gem "font-awesome-sass", "~> 6.3.0"
+gem "font-awesome-sass", "~> 6.4.0"
 gem "acts_as_votable"
 gem "pundit"
 gem 'sidekiq', '~> 6.5.5'

@@ -142,7 +142,7 @@ GEM
       railties (>= 5.0.0)
     ffi (1.15.5)
     ffi (1.15.5-x64-mingw-ucrt)
-    font-awesome-sass (6.3.0)
+    font-awesome-sass (6.4.0)
       sassc (~> 2.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -414,7 +414,7 @@ DEPENDENCIES
   debug
   devise (~> 4.8.1)
   factory_bot_rails
-  font-awesome-sass (~> 6.3.0)
+  font-awesome-sass (~> 6.4.0)
   image_processing (~> 1.2)
   jbuilder
   jquery-rails

@@ -10,19 +10,22 @@
             <%= render "devise/shared/error_messages", resource: resource %>
 
             <div class="form-outline mb-4">
-              <%= f.text_field :login, class: "form-control form-control-lg", id: "form3Example3cg", autofocus: true, autocomplete: "email or username" %>
-              <label class="form-label" for="form3Example3cg">Your Email or Username</label>
+              <%= f.text_field :login, class: "form-control form-control-lg", id: "login", autofocus: true, autocomplete: "email or username" %>
+              <label class="form-label" for="login">Your Email or Username</label>
             </div>
 
-            <div class="form-outline mb-4">
-              <%= f.password_field :password, class: "form-control form-control-lg", id: "form3Example4cg" %>
-              <label class="form-label" for="form3Example4cg">Password</label>
+            <div class="form-outline mb-4 password_field">
+              <div class="password_field">
+                <%= f.password_field :password, class: "form-control form-control-lg", id: "password" %>
+                <i class="fa-regular fa-eye" id="password_icon"></i>
+              </div>
+              <label class="form-label" for="password">Password</label>
             </div>
 
             <% if devise_mapping.rememberable? %>
               <div class="form-check d-flex justify-content-center mb-5">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                <label class="form-check-label" for="form2Example3g">Remember me</label>
+                <input class="form-check-input me-2" type="checkbox" value="" id="remember" />
+                <label class="form-check-label" for="remember">Remember me</label>
               </div>
             <% end %>
 
