@@ -23,14 +23,18 @@
               <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %><br />
-              <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg password icon-rtl", id: "password" %>
-                <i class="bi-globe"></i>
-              <div class="eye_icon">Show Password</div>
+              <div class="password_field">
+                <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg", id: "password" %>
+                <i class="fa-regular fa-eye" id="password_icon"></i>
+              </div>
               <label class="form-label" for="password">Password</label>
             </div>
 
             <div class="form-outline mb-4">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg", id: "confirm_password" %>
+              <div class="password_field">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg", id: "confirm_password" %>
+                <i class="fa-regular fa-eye" id="confirm_password_icon"></i>
+              </div>
               <label class="form-label" for="confirm_password">Repeat your password</label>
             </div>
 
