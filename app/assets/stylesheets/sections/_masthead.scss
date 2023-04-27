@@ -1,21 +1,9 @@
-header.masthead {
+.masthead {
     margin-bottom: 18px;
     background: no-repeat center center;
-    background-color: --bs-gray-600;
     background-attachment: scroll;
     position: relative;
     background-size: cover;
-    box-shadow: inset 0px 150px 30px 0px rgba(18, 18, 18, 0.2);
-
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        background-color: --bs-gray-900;
-        opacity: 0.5;
-    }
 
     .page-heading,
     .post-heading,
@@ -58,8 +46,9 @@ header.masthead {
             font-size: 35px;
             position: absolute;
             top: 20px;
-            left: 30px;
+            text-align: center;
             display: inline;
+            background-color: rgba(176, 176, 176, 0.5);
         }
 
         .meta,
@@ -67,8 +56,9 @@ header.masthead {
             line-height: 1.1;
             display: block;
             position: absolute;
+            text-align: center;
             top: 90px;
-            left: 30px;
+            background-color: rgba(176, 176, 176, 0.5);
         }
 
         .subheading {
