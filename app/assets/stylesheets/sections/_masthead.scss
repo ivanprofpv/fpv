@@ -1,5 +1,4 @@
 .masthead {
-    margin-bottom: 18px;
     background: no-repeat center center;
     background-attachment: scroll;
     position: relative;
@@ -182,6 +181,14 @@ img{
   .card-img-top {
     height: 20vw;
   }
+}
+
+.title_header {
+  margin-bottom: 100px;
+}
+
+.title_logo {
+  font-size: 2.5rem;
 }
 
 .pagination {

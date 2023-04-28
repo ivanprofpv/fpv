@@ -9,15 +9,20 @@
 <div class="row">
   <div class="col-lg-12 col-md-10 mx-auto">
     <div class="post-heading">
-      <h1><%= @drone.title %></h1>
-      <span class="meta">Posted by
-        <a href="<%= profile_path(@drone.user) %>"><%= @drone.user.username %></a><br>
-        Category: <%= @category_cat.title %>
-      </span>
     </div>
   </div>
 </div>
 </header>
+<div class="title_header">
+  <div class="float-start pt-1">
+    <div class="title_logo">
+      <%= @drone.title %>
+    </div>
+    <div class="title_meta">
+      Category: <%= @category_cat.title %>, posted by <a href="<%= profile_path(@drone.user) %>"><%= @drone.user.username %></a>
+    </div>
+  </div>
+</div>
 <hr>
 <div class="float-start pt-1">
   <div class="likes">
