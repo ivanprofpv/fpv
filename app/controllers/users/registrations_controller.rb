@@ -22,4 +22,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
+
+  def destroy
+    if resource.didsomething
+      redirect_to root_path, flash: { error: "You can't delete your account" }
+    end 
+  end 
 end

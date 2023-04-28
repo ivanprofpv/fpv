@@ -6,6 +6,10 @@ class ProfilePolicy < ApplicationPolicy
     true
   end
 
+  def buttons_other_profile?
+    user_author?
+  end
+
   def show?
     destroy?
   end
@@ -35,4 +39,10 @@ class ProfilePolicy < ApplicationPolicy
       user == record.user
     end
   end
+
+  # def user_not_author_profile?
+  #   if user.present?
+  #     user != record.user
+  #   end
+  # end
 end

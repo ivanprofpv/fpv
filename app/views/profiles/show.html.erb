@@ -6,14 +6,14 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
-                <% if @profile.avatar.persisted? %>
-                  <img src="<%= url_for(@profile.avatar) %>" alt="<%= current_user.username %>" class="rounded-circle" width="150">
+                <% if @profile.user.avatar.persisted? %>
+                  <img src="<%= url_for(current_user.avatar) %>" alt="<%= current_user.username %>" class="rounded-circle" width="150">
                 <% else %>
                   <img src="/avatar_default.png" alt="<%= current_user.username %>" class="rounded-circle" width="150">
                 <% end %>
                 <div class="mt-3">
                   <h4><%= @profile.user.username %></h4>
-                  <% unless policy(@profile).show? %>
+                  <% unless policy(@profile).buttons_other_profile? %>
                     <button class="btn btn-primary" disabled>Follow</button>
                     <button class="btn btn-outline-primary" disabled>Message</button>
                   <% end %>
@@ -47,7 +47,7 @@
                   <h6 class="mb-0">Email</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <%= current_user.email %>
+                  <%= @profile.user.email %>
                 </div>
               </div>
               <hr>
@@ -82,7 +82,8 @@
               <hr>
               <div class="row">
                 <div class="col-sm-12">
-                  <%= link_to 'Edit Profile', edit_profile_path, class: "btn btn-info btn-sm" %>
+                  <%= link_to 'Edit information', edit_profile_path, class: "btn btn-info btn-sm" %>
+                  <%= link_to 'Settings', edit_user_registration_path(current_user), class: "btn btn-info btn-sm" %>
                 </div>
               </div>
               <% end %>

@@ -3,9 +3,13 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex flex-start align-items-center">
-          <img class="rounded-circle shadow-1-strong me-3"
-            src="/avatar.webp" alt="avatar" width="60"
-            height="60" />
+          <% if comment.user.avatar.persisted? %>
+            <img src="<%= url_for(comment.user.avatar) %>" alt="<%= comment.user.username %>" class="rounded-circle shadow-1-strong me-3" width="60" height="60">
+          <% else %>
+            <img class="rounded-circle shadow-1-strong me-3"
+              src="/avatar.webp" alt="avatar" width="60"
+              height="60" />
+          <% end %>  
           <div>
             <h6 class="fw-bold text-primary mb-1"><%= comment.user.username %></h6>
             <p class="text-muted small mb-0">
@@ -14,11 +18,11 @@
             </p>
           </div>
         </div>
-        <p class="mt-1">
+        <p class="comment-body">
           <%= comment.body %>
         </p>
         <% if policy(comment).edit? %>
-          <div class="small float-start pt-1">
+          <div class="comment-buttons small float-start pt-1">
             <%= link_to 'Edit', '#', remote: true, data: { comment_id: comment.id }, class: 'btn btn-outline-primary btn-sm edit-comment-link' %>
             <%= link_to 'Delete', drone_comment_path(@drone, comment), method: :delete, remote: true, data: { confirm: 'Are you sure?', comment_id: comment.id }, class: 'btn btn-danger btn-sm' %>
           </div>

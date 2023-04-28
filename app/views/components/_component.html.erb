@@ -5,7 +5,7 @@
     <th scope="col">Name component</th>
     <th scope="col">Url</th>
     <th scope="col">Price</th>
-    <% if user_signed_in? && current_user&.author?(@drone) %>
+    <% if policy(@drone).edit? %>
       <th scope="col">Settings</th>
     <% end %>
   </tr>

@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_one :profile, dependent: :destroy
+  has_one_attached :avatar, dependent: :destroy
+
   accepts_nested_attributes_for :profile
 
   devise :database_authenticatable, :registerable,
@@ -12,6 +14,9 @@ class User < ApplicationRecord
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validate :validate_username
+
+  validates :avatar, content_type: { in: ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'], message: 'must be a JPEG, PNG or JPG' },
+                     size: { less_than: 3.megabytes, message: 'image is too large, max size 1 image - 3MB' }
 
   acts_as_voter
 
