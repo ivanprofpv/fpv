@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User can sees your profile' do
   given(:user) { create(:user) }
   given(:user_admin) { create(:user, admin: 'true') }
-  given(:category) { create(:category) }
+  given!(:category) { create(:category) }
 
   describe 'Authenticated user', js: true do
     background do
@@ -18,7 +18,7 @@ feature 'User can sees your profile' do
 
   describe 'Authenticated admin user', js: true do
     background do
-      sign_in(other_user)
+      sign_in(user_admin)
       visit categories_path
     end
 
