@@ -5,6 +5,9 @@
       <div class="card" style="border-radius: 15px;">
         <div class="card-body p-5">
           <h2 class="text-uppercase text-center mb-5">Log in</h2>
+            <%= content_for :recaptcha_js do %>
+              <%= include_recaptcha_js %>
+            <% end %>
 
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
@@ -16,7 +19,7 @@
 
             <div class="form-outline mb-4 password_field">
               <div class="password_field">
-                <%= f.password_field :password, class: "form-control form-control-lg", id: "password" %>
+                <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg", id: "password" %>
                 <i class="fa-regular fa-eye" id="password_icon"></i>
               </div>
               <label class="form-label" for="password">Password</label>
@@ -31,6 +34,7 @@
 
             <div class="d-flex justify-content-center">
               <%= f.submit "Log in", class: 'btn btn-info btn-lg' %>
+              <%= recaptcha_execute('captcha') %>
             </div>  
               <%= render "devise/shared/links" %> 
             <% end %>

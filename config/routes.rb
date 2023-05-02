@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/admin/sidekiq'
   end
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }, path_names: { sign_in: :login, sign_out: :logout }
+  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }, path_names: { sign_in: :login, sign_out: :logout }
   resources :profiles, only: %i[ edit update show ]
 
   resources :drones do
