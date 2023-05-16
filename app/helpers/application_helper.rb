@@ -1,5 +1,5 @@
 module ApplicationHelper
-  RECAPTCHA_SITE_KEY = Rails.application.credentials.recaptcha[:site_key]
+  RECAPTCHA_SITE_KEY = Rails.application.credentials[Rails.env.to_sym][:recaptcha][:site_key]
 
   def current_year
     Time.current.year
