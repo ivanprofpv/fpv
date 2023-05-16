@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def verify_recaptcha?(token, recaptcha_action)
-    secret_key = Rails.application.credentials.recaptcha[:secret_key]
+    secret_key = Rails.application.credentials[Rails.env.to_sym][:recaptcha][:secret_key]
 
     uri = URI.parse("https://www.google.com/recaptcha/api/siteverify?secret=#{secret_key}&response=#{token}")
     response = Net::HTTP.get_response(uri)

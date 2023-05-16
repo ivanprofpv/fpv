@@ -6,7 +6,7 @@ set :repo_url, "git@github.com:ivanprofpv/fpv.git"
 set :pty, false
 
 # Default branch is :master
-set :branch, "page_errors"
+set :branch, "captcha"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/deploy/buildfpv"
