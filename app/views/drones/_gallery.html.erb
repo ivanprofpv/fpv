@@ -1,6 +1,6 @@
-<% if @drone.gallerys.attached? %>
+
 <div class="row">
-  <% @drone.gallerys.each do |pic| %>
+  <% @drone.galleries.gallery_foto.each do |pic| %>
   <div class="col-4">
       <%= link_to url_for(pic), 'data-dimbox': "photos" do %>
           <% image_tag url_for(pic), class: "gallery_img rounded-0" %>
@@ -8,4 +8,3 @@
        </div>
   <% end %>
 </div>
-<% end %>

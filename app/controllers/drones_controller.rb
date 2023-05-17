@@ -1,6 +1,6 @@
 class DronesController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy edit new]
-  before_action :load_drone, only: %i[show edit update destroy upvote]
+  before_action :load_drone, only: %i[edit update destroy upvote]
 
   def index
     @drones = Drone.order(created_at: :desc).page params[:page]
@@ -25,12 +25,20 @@ class DronesController < ApplicationController
     category_component_count.times do
       @drone.components.build
     end
+    @gallery = @drone.galleries.build
   end
 
   def create
     @drone = Drone.new(drone_params)
 
     @drone.user = current_user
+    if params[:gallery]
+      @gallery = @drone.galleries.build
+    
+      if params[:gallery][:gallery_foto]
+        @gallery.gallery_foto = params[:gallery][:gallery_foto] 
+      end
+    end
 
     if @drone.save
       flash[:good] = 'Drone created successfully.'
@@ -64,11 +72,11 @@ class DronesController < ApplicationController
   end
 
   def load_drone
-    @drone = Drone.with_attached_foto.with_attached_gallerys.find(params[:id])
+    @drone = Drone.with_attached_foto.find(params[:id])
   end
 
   def drone_params
     params.require(:drone).permit(:title, :content, :foto, :category_id,
-                                  components_attributes: %i[title url price component_category_id _destroy], gallerys: [])
+                                  components_attributes: %i[title url price component_category_id _destroy], galleries_attributes: %i[gallery_foto])
   end
 end
