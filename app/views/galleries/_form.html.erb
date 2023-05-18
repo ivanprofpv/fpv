@@ -1,0 +1,18 @@
+<div class="gallery-errors">
+  <%= render 'shared/errors', resource: @gallery %>
+</div>
+<div class="form_gallery">
+  <%= form_with model: [@drone, @drone.galleries.new], local: false,
+                                                        html: { id: "add-gallery-link-#{@drone.id}" } do |f| %>
+    <div class="row g-3">
+      <div class="input-group mb-5">
+        <label class="input-group-text" for="inputGroupFileGallery">Upload gallery</label>
+        <%= f.file_field :gallery_foto, class: "form-control", id: "inputGroupFileGallery"%>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Upload foto</button>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= link_to 'Add foto', '#', class: 'btn btn-info add-gallery-link', data: { drone_id: @drone.id } %>

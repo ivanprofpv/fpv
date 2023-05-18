@@ -1,0 +1,6 @@
+<% if @component.errors.any? %>
+  $('.gallery-errors').html('<%= j render 'shared/errors', resource: @gallery %>')
+<% else %>
+  $("#gallery").html('<%= j render 'galleries/gallery' %>');
+  $("#form_gallery").html("<%= j render 'galleries/form' %>");
+<% end %>

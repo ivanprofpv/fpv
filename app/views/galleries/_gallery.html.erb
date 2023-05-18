@@ -1,9 +1,11 @@
 <div class="row">
-  <% @drone.galleries.each do |gallery| %>
-  <div class="col-4">
-      <%= link_to url_for(gallery.gallery_foto), 'data-dimbox': "photos" do %>
-          <% image_tag url_for(gallery.gallery_foto), class: "gallery_img rounded-0" %>
-      <% end %>
-       </div>
-  <% end %>
+    <%= @drone.galleries.find_each(order: :asc) do |gallery| %>
+      <div class="col-4">
+        <% if gallery.gallery_foto.attached? %>
+          <%= link_to url_for(gallery.gallery_foto), 'data-dimbox': "photos" do %>
+            <% image_tag url_for(gallery.gallery_foto), class: "gallery_img rounded-0" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
 </div>

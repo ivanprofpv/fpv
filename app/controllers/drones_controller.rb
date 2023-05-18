@@ -1,7 +1,7 @@
 class DronesController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy edit new]
-  before_action :load_drone, only: %i[edit update destroy upvote]
-
+  before_action :load_drone, only: %i[edit update destroy upvote show]
+  
   def index
     @drones = Drone.order(created_at: :desc).page params[:page]
   end

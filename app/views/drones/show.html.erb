@@ -7,7 +7,12 @@
 <hr>
 <h2 class="display-6">Photos</h1>
 <br>
-  <%= render 'galleries/gallery' %>
+  <div id="galleries" class="mb-3">
+    <%= render 'galleries/gallery' %>
+    <div id="form_gallery" class="mb-3">
+      <%= render 'galleries/form' %>
+    </div>
+  </div>
 <br>
 <hr>
 <div class="components">

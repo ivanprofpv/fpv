@@ -30,18 +30,6 @@
                   <%= f.rich_text_area :content, class: "form-control", placeholder: "Description of your drone build", id: "floatingTextarea" %>
                 </div>
 
-                 <p><strong>Gallery foto of a drone build:</strong></p>
-
-                    <p>
-                    <%= f.fields_for :galleries do |g| %>
-  
-                      <div class="input-group mb-5">
-                        <label class="input-group-text" for="inputGroupFileGallery">Upload gallery</label>
-                        <%= g.file_field :gallery_foto, class: "form-control", id: "inputGroupFileGallery"%>
-                      </div>
-                    <% end %>
-                  </div>
-
                 <div class="d-grid gap-2">
                   <%= f.submit "Update", class: 'btn btn-info btn-lg' %>
                 </div> 

@@ -25,6 +25,7 @@ require("comments/edit")
 require("components/add_component")
 require("components/edit")
 require("gallery/dimbox")
+require("galleries/add_gallery")
 require("password/pass")
 
 require("@popperjs/core")
