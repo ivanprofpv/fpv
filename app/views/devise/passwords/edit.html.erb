@@ -7,19 +7,20 @@
           <h2 class="text-uppercase text-center mb-5">Change your password</h2>
 
             <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.hidden_field :reset_password_token, value: params[:reset_password_token] %>
             <%= render "devise/shared/error_messages", resource: resource %>
 
             <div class="form-outline mb-4">
               <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em><br />
               <% end %>
-              <%= f.email_field :password, autofocus: true, autocomplete: "new-password", class: "form-control form-control-lg", id: "form3Example3cg" %>
-              <label class="form-label" for="form3Example3cg">Your Email</label>
+              <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control form-control-lg", id: "form3Example3cg" %>
+              <label class="form-label" for="form3Example3cg">New password</label>
             </div>
 
             <div class="form-outline mb-4">
-              <%= f.email_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg", id: "form3Example3cg" %>
-              <label class="form-label" for="form3Example3cg">Your Email</label>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg", id: "form3Example3cg" %>
+              <label class="form-label" for="form3Example3cg">Confirmation new password</label>
             </div>
 
             <div class="d-flex justify-content-center">
