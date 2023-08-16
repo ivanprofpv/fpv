@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 6.1.7"
+gem "rails", "7.0.7"
 
 # Use postgresql as the database for Active Record
 gem "pg", '>= 0.18', '< 2.0'
@@ -56,8 +56,8 @@ gem "acts_as_votable"
 gem "pundit"
 gem 'sidekiq', '~> 6.5.5'
 gem "redis"
-gem 'mysql2', '~> 0.5.5'
-gem "thinking-sphinx", "~> 5.5"
+# gem 'mysql2', '~> 0.5.5'
+# gem "thinking-sphinx", "~> 5.5"
 gem 'net-smtp'
 gem 'kaminari'
 

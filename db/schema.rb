@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_23_052247) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_08_16_104725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,8 +20,8 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "drones_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["drones_id"], name: "index_action_text_rich_texts_on_drones_id"
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
@@ -32,7 +31,7 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -44,8 +43,8 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -57,16 +56,16 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
     t.string "body", null: false
     t.bigint "user_id", null: false
     t.bigint "drone_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "cached_votes_total", default: 0
     t.integer "cached_votes_score", default: 0
     t.index ["drone_id"], name: "index_comments_on_drone_id"
@@ -75,8 +74,8 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
 
   create_table "component_categories", force: :cascade do |t|
     t.string "title", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "components", force: :cascade do |t|
@@ -84,8 +83,8 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
     t.string "url"
     t.integer "price"
     t.bigint "drone_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "component_category_id", null: false
     t.index ["component_category_id"], name: "index_components_on_component_category_id"
     t.index ["drone_id"], name: "index_components_on_drone_id"
@@ -93,8 +92,8 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
 
   create_table "drones", force: :cascade do |t|
     t.string "title", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "category_id"
     t.integer "cached_votes_total", default: 0
@@ -108,9 +107,8 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
     t.string "name"
     t.string "about"
     t.string "city"
-    t.string "avatar"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -118,21 +116,22 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "username"
     t.boolean "admin"
+    t.string "avatar"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -147,8 +146,8 @@ ActiveRecord::Schema.define(version: 2023_03_23_052247) do
     t.boolean "vote_flag"
     t.string "vote_scope"
     t.integer "vote_weight"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
     t.index ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
