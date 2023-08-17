@@ -1,8 +1,9 @@
 <% if user_signed_in? %>
-  <div class="comment-errors">
-    <%= render 'shared/errors', resource: @comment %>
-  </div>
-    <%= form_with model: [@drone, @drone.comments.new], local: false, id: 'new-comment' do |f| %>
+  <%= turbo_frame_tag "comment_form" do %>
+    <%= form_with model: [@drone, @drone.comments.new] do |f| %>
+      <div class="comment-errors">
+        <%= render 'shared/errors', resource: @comment %>
+      </div>
       <div class="form-floating">
         <%= f.text_area :body, class: "form-control", placeholder: "Leave a comment here", id: "floatingTextarea" %>
         <label for="floatingTextarea">Leave a comment here</label>
@@ -11,4 +12,5 @@
         </div>
       </div>
     <% end %>
-<% end %>
+  <% end %>
+<% end %> 

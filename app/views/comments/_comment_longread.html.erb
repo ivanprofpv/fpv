@@ -1,0 +1,4 @@
+<%= turbo_stream_from @drone, :comments %>
+  <div id="<%= "#{dom_id(@drone)}_comments" %>">
+    <%= render @drone.comments.order(created_at: :asc) %>
+  </div>  
