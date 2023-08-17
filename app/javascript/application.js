@@ -6,14 +6,15 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("jquery")
-require("comments/edit")
-require("components/add_component")
-require("components/edit")
-require("gallery/dimbox")
-require("password/pass")
+require("./comments/edit")
+require("./components/add_component")
+require("./components/edit")
+require("./gallery/dimbox")
+require("./password/pass")
 
 require("@popperjs/core")
 
 import "bootstrap"
 import "trix"
-import "@rails/actiontext"import "@hotwired/turbo-rails"
+import "@rails/actiontext"
+import "@hotwired/turbo-rails"

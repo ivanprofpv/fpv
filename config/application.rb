@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Fpv
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.0
     config.active_storage.variant_processor = :vips
 
     config.exceptions_app = self.routes
@@ -24,6 +24,8 @@ module Fpv
     config.active_job.queue_adapter = :sidekiq
 
     config.action_cable.disable_request_forgery_protection = false
+
+    config.middleware.use Warden::Manager
 
     config.eager_load_paths.reject! { |path| path == Rails.root.join("app", "indices").to_s }
 

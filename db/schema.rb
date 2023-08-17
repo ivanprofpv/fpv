@@ -107,6 +107,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_104725) do
     t.string "name"
     t.string "about"
     t.string "city"
+    t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -131,7 +132,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_104725) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.boolean "admin"
-    t.string "avatar"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
