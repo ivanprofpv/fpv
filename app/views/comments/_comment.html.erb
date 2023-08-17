@@ -1,5 +1,4 @@
-<% @drone.comments.find_each(order: :asc) do |comment| %>
-  <div class="comment_<%= comment.id %>">
+<div id="<%= dom_id(comment) %>">
     <div class="card">
       <div class="card-body">
         <div class="d-flex flex-start align-items-center">
@@ -17,34 +16,8 @@
         <p class="mt-1">
           <%= comment.body %>
         </p>
-        <% if policy(comment).edit? %>
-          <div class="small float-start pt-1">
-            <%= link_to 'Edit', '#', remote: true, data: { comment_id: comment.id }, class: 'btn btn-outline-primary btn-sm edit-comment-link' %>
-            <%= link_to 'Delete', drone_comment_path(@drone, comment), method: :delete, remote: true, data: { confirm: 'Are you sure?', comment_id: comment.id }, class: 'btn btn-danger btn-sm' %>
-          </div>
-        <% end %>
-        <div class="small float-end pt-4">
-          <div class="likes-comment">
-            <td><%= render partial: 'comments/upvote_link', locals: { comment: comment } %></td>
-          </div>
-        </div>
-        <br><br>
-        <% if policy(comment).update? %>
-          <div class="comment-errors-update">
-            <%= render 'shared/errors', resource: @comment %>
-          </div>
-          <%= form_with model: [@drone, comment], local: false, class: 'hidden', html: { id: "edit-comment-#{comment.id}" } do |f| %>
-            <div class="form-floating">
-              <%= f.text_area :body, class: "form-control", placeholder: "Leave a comment here", id: "floatingTextarea" %>
-              <label for="floatingTextarea">Leave a comment here</label>
-              <div class="float-start mt-2 pt-1">
-                <%= f.submit 'Update comment', class: "btn btn-primary" %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+
       </div>
     </div>
   <br>
   </div>
-<% end %>

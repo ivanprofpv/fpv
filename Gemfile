@@ -17,6 +17,7 @@ gem "sass-rails", ">= 6"
 
 gem "jsbundling-rails"
 gem "stimulus-rails"
+gem "hotwire-rails"
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem "turbolinks", "~> 5"

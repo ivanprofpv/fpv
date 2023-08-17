@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^7.3.0",
     "@popperjs/core": "^2.11.6",
     "@rails/actiontext": "6.1.7-2",
     "@rails/ujs": "^7.0.4-2",
